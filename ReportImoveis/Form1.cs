@@ -43,7 +43,7 @@ namespace ReportImoveis
             label.AutoSize = true;
 
 
-            this.Controls.Add(label);
+            Controls.Add(label);
         }
     }
 }
