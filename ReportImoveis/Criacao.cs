@@ -1,5 +1,6 @@
 ﻿
 
+using Newtonsoft.Json;
 using ReportImoveis.Core.DinamicDesigner;
 using ReportImoveis.Core.Domain;
 
@@ -17,7 +18,6 @@ namespace ReportImoveis
             NumeroDeImoveis = 1;
             CriacaoInfoLinesList.Add(new CriacaoInfoLine()
             {
-                Label = label4,
                 TextBox1 = TextBoxNome1,
                 TextBox2 = PrecoIm1,
                 TextBox3 = LoacalIm1
@@ -39,21 +39,34 @@ namespace ReportImoveis
 
         private void SalvarDados_Click(object sender, EventArgs e)
         {
-            try
+            foreach (var item in CriacaoInfoLinesList)
             {
-                var Imovel1 = new Imovel
+                ListaDeImoveis.Add(new Imovel()
                 {
-                    Nome = TextBoxNome1.Text,
-                    Valor = Decimal.Parse(PrecoIm1.Text),
-                    Localizacao = LoacalIm1.Text,
-                };
+                    Nome = item.TextBox1.Text,
+                    Valor = Decimal.Parse(item.TextBox2.Text),
+                    Localizacao = item.TextBox3.Text,
+                });
+            }
 
-                MessageBox.Show("Texto inserido" + Imovel1.ToString());
-            }
-            catch (Exception)
+            var serializado = JsonConvert.SerializeObject(ListaDeImoveis);
+            MessageBox.Show("Texto inserido" + serializado);
+            SaveData(serializado);
+        }
+
+        private void SaveData(String data)
+        {
+            // Displays a SaveFileDialog so the user can save the Image
+            // assigned to Button2.
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Title = "Save";
+            
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                MessageBox.Show("Valor inválido inserido");
+                File.WriteAllText(saveFileDialog1.FileName, data);
             }
+            // If the file name is not an empty string open it for saving.
+
         }
 
         private void AddImovel_Click(object sender, EventArgs e)
@@ -61,26 +74,30 @@ namespace ReportImoveis
             NumeroDeImoveis++;
             var Deslocamento = NumeroDeImoveis * 30;
 
-            Point LabelPoint = new Point(40, 135 + Deslocamento);
+            Point LabelPoint = new Point(45, 135 + Deslocamento);
             Label label = new Label();
             label.Location = LabelPoint;
-            label.Visible = true;
+            label.AutoSize = true;
+            label.Text = "imóvel " + NumeroDeImoveis;
 
             TextBox textBox1 = new TextBox();
-            Point pointTextBox1 = new Point(190, 135 + Deslocamento);
+            Point pointTextBox1 = new Point(180, 135 + Deslocamento);
             textBox1.Location = pointTextBox1;
+            textBox1.Size = new Size(170, 27);
 
             TextBox textBox2 = new TextBox();
-            Point pointTextBox2 = new Point(394, 135 + Deslocamento);
+            Point pointTextBox2 = new Point(385, 135 + Deslocamento);
             textBox2.Location = pointTextBox2;
+            textBox2.Size = new Size(170, 27);
 
             TextBox textBox3 = new TextBox();
-            Point pointTextBox3 = new Point(597, 135 + Deslocamento);
+            Point pointTextBox3 = new Point(588, 135 + Deslocamento);
             textBox3.Location = pointTextBox3;
+            textBox3.Size = new Size(170, 27);
 
             CriacaoInfoLine NewInfo = new CriacaoInfoLine()
             {
-                Label = label,
+                //Label = label,
                 TextBox1 = textBox1,
                 TextBox2 = textBox2,
                 TextBox3 = textBox3,

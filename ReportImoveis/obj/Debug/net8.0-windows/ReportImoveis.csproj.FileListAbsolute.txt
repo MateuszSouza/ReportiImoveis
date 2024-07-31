@@ -16,3 +16,6 @@ E:\Projects\ReportiImoveis\ReportImoveis\obj\Debug\net8.0-windows\ReportImoveis.
 E:\Projects\ReportiImoveis\ReportImoveis\obj\Debug\net8.0-windows\ReportImoveis.genruntimeconfig.cache
 E:\Projects\ReportiImoveis\ReportImoveis\obj\Debug\net8.0-windows\ref\ReportImoveis.dll
 E:\Projects\ReportiImoveis\ReportImoveis\obj\Debug\net8.0-windows\ReportImoveis.Criacao.resources
+E:\Projects\ReportiImoveis\ReportImoveis\bin\Debug\net8.0-windows\Newtonsoft.Json.dll
+E:\Projects\ReportiImoveis\ReportImoveis\obj\Debug\net8.0-windows\ReportImoveis.csproj.AssemblyReference.cache
+E:\Projects\ReportiImoveis\ReportImoveis\obj\Debug\net8.0-windows\ReportIm.2DE0B466.Up2Date

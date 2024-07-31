@@ -41,7 +41,7 @@
             // 
             // SalvarDados
             // 
-            SalvarDados.Location = new Point(660, 642);
+            SalvarDados.Location = new Point(738, 644);
             SalvarDados.Name = "SalvarDados";
             SalvarDados.Size = new Size(94, 29);
             SalvarDados.TabIndex = 1;
@@ -52,7 +52,7 @@
             // 
             // AddImovel
             // 
-            AddImovel.Location = new Point(760, 642);
+            AddImovel.Location = new Point(838, 644);
             AddImovel.Name = "AddImovel";
             AddImovel.Size = new Size(94, 29);
             AddImovel.TabIndex = 2;
@@ -64,7 +64,7 @@
             // 
             LoacalIm1.Location = new Point(588, 162);
             LoacalIm1.Name = "LoacalIm1";
-            LoacalIm1.Size = new Size(179, 27);
+            LoacalIm1.Size = new Size(170, 27);
             LoacalIm1.TabIndex = 4;
             // 
             // label1
@@ -109,7 +109,7 @@
             // 
             PrecoIm1.Location = new Point(385, 162);
             PrecoIm1.Name = "PrecoIm1";
-            PrecoIm1.Size = new Size(179, 27);
+            PrecoIm1.Size = new Size(170, 27);
             PrecoIm1.TabIndex = 17;
             PrecoIm1.TextChanged += PrecoUm_TextChanged;
             // 
@@ -117,7 +117,7 @@
             // 
             TextBoxNome1.Location = new Point(180, 162);
             TextBoxNome1.Name = "TextBoxNome1";
-            TextBoxNome1.Size = new Size(179, 27);
+            TextBoxNome1.Size = new Size(170, 27);
             TextBoxNome1.TabIndex = 20;
             TextBoxNome1.TextChanged += textBox9_TextChanged;
             // 

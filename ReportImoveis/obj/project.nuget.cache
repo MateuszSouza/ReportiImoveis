@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HLBry1ShAhP1UJ+1txCMXG/OoG2rxznUc9whObKYfXh3eJShEQ0blza6SU7YrVrAz+SijOMKZRVcCT0q24kTWA==",
+  "dgSpecHash": "QLj+oKFz3ES3vsHgWzsyg0F6KYEUo730+mFZ2o8ziy5QvvtnOKUv+O+h+yjOOTNWa8GSk7QHDR9JbHEKF0PUEQ==",
   "success": true,
   "projectFilePath": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\ReportImoveis.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\mateu\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -8,7 +8,7 @@ namespace ReportImoveis.Core.DinamicDesigner
 {
     public class CriacaoInfoLine
     {
-        public Label  Label { get; set; }
+        //public Label  Label { get; set; }
         public TextBox TextBox1 { get; set; }
         public TextBox TextBox2 { get; set; }
         public TextBox TextBox3 { get; set; }
