@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ReportImoveis")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e9925111805d496e5ab7e27f6cb84fb6132774cf")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6a28093cf49b86fe2a922a5927728d74d2545023")]
 [assembly: System.Reflection.AssemblyProductAttribute("ReportImoveis")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ReportImoveis")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

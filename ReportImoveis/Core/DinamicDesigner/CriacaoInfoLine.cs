@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ReportImoveis.Core.DinamicDesigner
+﻿namespace ReportImoveis.Core.DinamicDesigner
 {
     public class CriacaoInfoLine
     {
-        //public Label  Label { get; set; }
-        public TextBox TextBox1 { get; set; }
-        public TextBox TextBox2 { get; set; }
-        public TextBox TextBox3 { get; set; }
-
+        public Label Label { get; set; }
+        public TextBox Metragem { get; set; }
+        public TextBox ValorTxtBox { get; set; }
+        public TextBox BanheirosTxtBox { get; set; }
+        public TextBox GaragemTxtBox { get; set; }
+        public TextBox DormTxtBox { get; set; }
     }
 }

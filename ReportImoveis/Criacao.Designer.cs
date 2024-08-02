@@ -30,18 +30,30 @@
         {
             SalvarDados = new Button();
             AddImovel = new Button();
-            LoacalIm1 = new TextBox();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
-            label4 = new Label();
-            PrecoIm1 = new TextBox();
-            TextBoxNome1 = new TextBox();
+            BanheirosTxtBox = new TextBox();
+            metragemLabel = new Label();
+            labelValor = new Label();
+            BanheirosLabel = new Label();
+            ImovelLabel = new Label();
+            ValorTxtBox1 = new TextBox();
+            MetragemTxtBox1 = new TextBox();
+            label5 = new Label();
+            NomeEstudo = new TextBox();
+            NomeCliente = new Label();
+            NomeClienteTextBox = new TextBox();
+            CorretorLabel = new Label();
+            CorretorTextBox = new TextBox();
+            GaragemLabel = new Label();
+            GaragemTxtBox = new TextBox();
+            DormLabel = new Label();
+            DormTxtBox = new TextBox();
+            CasaPictureBox = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)CasaPictureBox).BeginInit();
             SuspendLayout();
             // 
             // SalvarDados
             // 
-            SalvarDados.Location = new Point(738, 644);
+            SalvarDados.Location = new Point(1308, 671);
             SalvarDados.Name = "SalvarDados";
             SalvarDados.Size = new Size(94, 29);
             SalvarDados.TabIndex = 1;
@@ -52,7 +64,7 @@
             // 
             // AddImovel
             // 
-            AddImovel.Location = new Point(838, 644);
+            AddImovel.Location = new Point(1408, 671);
             AddImovel.Name = "AddImovel";
             AddImovel.Size = new Size(94, 29);
             AddImovel.TabIndex = 2;
@@ -60,84 +72,185 @@
             AddImovel.UseVisualStyleBackColor = true;
             AddImovel.Click += AddImovel_Click;
             // 
-            // LoacalIm1
+            // BanheirosTxtBox
             // 
-            LoacalIm1.Location = new Point(588, 162);
-            LoacalIm1.Name = "LoacalIm1";
-            LoacalIm1.Size = new Size(170, 27);
-            LoacalIm1.TabIndex = 4;
+            BanheirosTxtBox.Location = new Point(588, 162);
+            BanheirosTxtBox.Name = "BanheirosTxtBox";
+            BanheirosTxtBox.Size = new Size(170, 27);
+            BanheirosTxtBox.TabIndex = 4;
             // 
-            // label1
+            // metragemLabel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(192, 128);
-            label1.Name = "label1";
-            label1.Size = new Size(39, 20);
-            label1.TabIndex = 5;
-            label1.Text = "Tipo";
-            label1.Click += label1_Click;
+            metragemLabel.AutoSize = true;
+            metragemLabel.Location = new Point(180, 128);
+            metragemLabel.Name = "metragemLabel";
+            metragemLabel.Size = new Size(78, 20);
+            metragemLabel.TabIndex = 5;
+            metragemLabel.Text = "Metragem";
+            metragemLabel.Click += label1_Click;
             // 
-            // label2
+            // labelValor
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(397, 128);
-            label2.Name = "label2";
-            label2.Size = new Size(46, 20);
-            label2.TabIndex = 6;
-            label2.Text = "Preço";
+            labelValor.AutoSize = true;
+            labelValor.Location = new Point(385, 128);
+            labelValor.Name = "labelValor";
+            labelValor.Size = new Size(74, 20);
+            labelValor.TabIndex = 6;
+            labelValor.Text = "Valor (R$)";
             // 
-            // label3
+            // BanheirosLabel
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(600, 128);
-            label3.Name = "label3";
-            label3.Size = new Size(44, 20);
-            label3.TabIndex = 7;
-            label3.Text = "Local";
+            BanheirosLabel.AutoSize = true;
+            BanheirosLabel.Location = new Point(588, 128);
+            BanheirosLabel.Name = "BanheirosLabel";
+            BanheirosLabel.Size = new Size(74, 20);
+            BanheirosLabel.TabIndex = 7;
+            BanheirosLabel.Text = "Banheiros";
             // 
-            // label4
+            // ImovelLabel
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(45, 169);
-            label4.Name = "label4";
-            label4.Size = new Size(66, 20);
-            label4.TabIndex = 14;
-            label4.Text = "Imóvel 1";
-            label4.Click += label4_Click;
+            ImovelLabel.AutoSize = true;
+            ImovelLabel.Location = new Point(45, 169);
+            ImovelLabel.Name = "ImovelLabel";
+            ImovelLabel.Size = new Size(66, 20);
+            ImovelLabel.TabIndex = 14;
+            ImovelLabel.Text = "Imóvel 1";
+            ImovelLabel.Click += label4_Click;
             // 
-            // PrecoIm1
+            // ValorTxtBox1
             // 
-            PrecoIm1.Location = new Point(385, 162);
-            PrecoIm1.Name = "PrecoIm1";
-            PrecoIm1.Size = new Size(170, 27);
-            PrecoIm1.TabIndex = 17;
-            PrecoIm1.TextChanged += PrecoUm_TextChanged;
+            ValorTxtBox1.Location = new Point(385, 162);
+            ValorTxtBox1.Name = "ValorTxtBox1";
+            ValorTxtBox1.Size = new Size(170, 27);
+            ValorTxtBox1.TabIndex = 17;
+            ValorTxtBox1.TextChanged += PrecoUm_TextChanged;
             // 
-            // TextBoxNome1
+            // MetragemTxtBox1
             // 
-            TextBoxNome1.Location = new Point(180, 162);
-            TextBoxNome1.Name = "TextBoxNome1";
-            TextBoxNome1.Size = new Size(170, 27);
-            TextBoxNome1.TabIndex = 20;
-            TextBoxNome1.TextChanged += textBox9_TextChanged;
+            MetragemTxtBox1.Location = new Point(180, 162);
+            MetragemTxtBox1.Name = "MetragemTxtBox1";
+            MetragemTxtBox1.Size = new Size(170, 27);
+            MetragemTxtBox1.TabIndex = 20;
+            MetragemTxtBox1.TextChanged += textBox9_TextChanged;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(145, 68);
+            label5.Name = "label5";
+            label5.Size = new Size(145, 20);
+            label5.TabIndex = 21;
+            label5.Text = "Título Apresentação:";
+            // 
+            // NomeEstudo
+            // 
+            NomeEstudo.Location = new Point(296, 65);
+            NomeEstudo.Name = "NomeEstudo";
+            NomeEstudo.Size = new Size(203, 27);
+            NomeEstudo.TabIndex = 22;
+            // 
+            // NomeCliente
+            // 
+            NomeCliente.AutoSize = true;
+            NomeCliente.Location = new Point(519, 70);
+            NomeCliente.Name = "NomeCliente";
+            NomeCliente.Size = new Size(58, 20);
+            NomeCliente.TabIndex = 23;
+            NomeCliente.Text = "Cliente:";
+            // 
+            // NomeClienteTextBox
+            // 
+            NomeClienteTextBox.Location = new Point(588, 63);
+            NomeClienteTextBox.Name = "NomeClienteTextBox";
+            NomeClienteTextBox.Size = new Size(259, 27);
+            NomeClienteTextBox.TabIndex = 24;
+            // 
+            // CorretorLabel
+            // 
+            CorretorLabel.AutoSize = true;
+            CorretorLabel.Location = new Point(875, 68);
+            CorretorLabel.Name = "CorretorLabel";
+            CorretorLabel.Size = new Size(67, 20);
+            CorretorLabel.TabIndex = 25;
+            CorretorLabel.Text = "Corretor:";
+            // 
+            // CorretorTextBox
+            // 
+            CorretorTextBox.Location = new Point(948, 65);
+            CorretorTextBox.Name = "CorretorTextBox";
+            CorretorTextBox.Size = new Size(232, 27);
+            CorretorTextBox.TabIndex = 26;
+            CorretorTextBox.Text = "Alexandre";
+            // 
+            // GaragemLabel
+            // 
+            GaragemLabel.AutoSize = true;
+            GaragemLabel.Location = new Point(790, 128);
+            GaragemLabel.Name = "GaragemLabel";
+            GaragemLabel.Size = new Size(70, 20);
+            GaragemLabel.TabIndex = 28;
+            GaragemLabel.Text = "Garagem";
+            // 
+            // GaragemTxtBox
+            // 
+            GaragemTxtBox.Location = new Point(790, 162);
+            GaragemTxtBox.Name = "GaragemTxtBox";
+            GaragemTxtBox.Size = new Size(170, 27);
+            GaragemTxtBox.TabIndex = 27;
+            // 
+            // DormLabel
+            // 
+            DormLabel.AutoSize = true;
+            DormLabel.Location = new Point(982, 128);
+            DormLabel.Name = "DormLabel";
+            DormLabel.Size = new Size(89, 20);
+            DormLabel.TabIndex = 30;
+            DormLabel.Text = "Dormitórios";
+            // 
+            // DormTxtBox
+            // 
+            DormTxtBox.Location = new Point(982, 162);
+            DormTxtBox.Name = "DormTxtBox";
+            DormTxtBox.Size = new Size(170, 27);
+            DormTxtBox.TabIndex = 29;
+            // 
+            // CasaPictureBox
+            // 
+            CasaPictureBox.Location = new Point(1186, 127);
+            CasaPictureBox.Name = "CasaPictureBox";
+            CasaPictureBox.Size = new Size(125, 62);
+            CasaPictureBox.TabIndex = 31;
+            CasaPictureBox.TabStop = false;
             // 
             // Criacao
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(969, 712);
-            Controls.Add(TextBoxNome1);
-            Controls.Add(PrecoIm1);
-            Controls.Add(label4);
-            Controls.Add(label3);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(LoacalIm1);
+            ClientSize = new Size(1527, 712);
+            Controls.Add(CasaPictureBox);
+            Controls.Add(DormLabel);
+            Controls.Add(DormTxtBox);
+            Controls.Add(GaragemLabel);
+            Controls.Add(GaragemTxtBox);
+            Controls.Add(CorretorTextBox);
+            Controls.Add(CorretorLabel);
+            Controls.Add(NomeClienteTextBox);
+            Controls.Add(NomeCliente);
+            Controls.Add(NomeEstudo);
+            Controls.Add(label5);
+            Controls.Add(MetragemTxtBox1);
+            Controls.Add(ValorTxtBox1);
+            Controls.Add(ImovelLabel);
+            Controls.Add(BanheirosLabel);
+            Controls.Add(labelValor);
+            Controls.Add(metragemLabel);
+            Controls.Add(BanheirosTxtBox);
             Controls.Add(AddImovel);
             Controls.Add(SalvarDados);
             Name = "Criacao";
             Text = "Criacao";
             Load += Criacao_Load;
+            ((System.ComponentModel.ISupportInitialize)CasaPictureBox).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -145,12 +258,23 @@
         #endregion
         private Button SalvarDados;
         private Button AddImovel;
-        private TextBox LoacalIm1;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private Label label4;
-        private TextBox PrecoIm1;
-        private TextBox TextBoxNome1;
+        private TextBox BanheirosTxtBox;
+        private Label metragemLabel;
+        private Label labelValor;
+        private Label BanheirosLabel;
+        private Label ImovelLabel;
+        private TextBox ValorTxtBox1;
+        private TextBox MetragemTxtBox1;
+        private Label label5;
+        private TextBox NomeEstudo;
+        private Label NomeCliente;
+        private TextBox NomeClienteTextBox;
+        private Label CorretorLabel;
+        private TextBox CorretorTextBox;
+        private Label GaragemLabel;
+        private TextBox GaragemTxtBox;
+        private Label DormLabel;
+        private TextBox DormTxtBox;
+        private PictureBox CasaPictureBox;
     }
 }
