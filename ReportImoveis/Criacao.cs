@@ -22,7 +22,8 @@ namespace ReportImoveis
                 BanheirosTxtBox = BanheirosTxtBox,
                 GaragemTxtBox = GaragemTxtBox,
                 DormTxtBox = DormTxtBox,
-                Metragem = MetragemTxtBox1
+                Metragem = MetragemTxtBox1,
+                LinkImovelTxtBox = LinkImovelTxtBox
             });
         }
 
@@ -45,15 +46,26 @@ namespace ReportImoveis
             {
                 ListaDeImoveis.Add(new Imovel()
                 {
-                    Metragem = int.Parse(item.Metragem.Text),
-                    Valor = decimal.Parse(item.BanheirosTxtBox.Text),
-                    NumeroBanheiros = int.Parse(item.BanheirosTxtBox.Text),
-                    Garagem = int.Parse(GaragemTxtBox.Text),
-                    NumeroDormitorios = int.Parse(DormTxtBox.Text)
+                    Metragem = item.Metragem.Text != null ? int.Parse(item.Metragem.Text) : 0,
+                    Valor = item.ValorTxtBox.Text != null ? decimal.Parse(item.ValorTxtBox.Text) : 0,
+                    NumeroBanheiros = item.BanheirosTxtBox.Text != null ? int.Parse(item.BanheirosTxtBox.Text) : 0,
+                    Garagem = item.GaragemTxtBox.Text != null ? int.Parse(item.GaragemTxtBox.Text) : 0,
+                    NumeroDormitorios = item.DormTxtBox.Text != null ? int.Parse(item.DormTxtBox.Text) : 0,
+                    LinkImovel = item.LinkImovelTxtBox.Text != null ? item.LinkImovelTxtBox.Text : ""
                 });
             }
 
-            var serializado = JsonConvert.SerializeObject(ListaDeImoveis);
+
+            var presentation = new Presentation() { 
+                 Imoveis = ListaDeImoveis,
+                 Corretor = CorretorTextBox.Text,
+                 Cliente= NomeClienteTextBox.Text,
+                 Titulo = NomeEstudo.Text
+            };
+
+            presentation.CalculateBasicAvaliation();
+
+            var serializado = JsonConvert.SerializeObject(presentation);
             MessageBox.Show("Texto inserido" + serializado);
             SaveData(serializado);
         }
@@ -76,9 +88,7 @@ namespace ReportImoveis
         private void AddImovel_Click(object sender, EventArgs e)
         {
             NumeroDeImoveis++;
-            var Deslocamento = NumeroDeImoveis * 30;
-
-            
+            var Deslocamento = NumeroDeImoveis * 30 - 27;
 
             Point LabelPoint = new Point(ImovelLabel.Location.X, ImovelLabel.Location.Y + Deslocamento);
             Label label = new Label();
@@ -92,24 +102,29 @@ namespace ReportImoveis
             MetragemTextBox.Size = new Size(170, 27);
 
             TextBox ValorTextBox = new TextBox();
-            Point pointTextBox2 = new Point(385, 162 + Deslocamento);
+            Point pointTextBox2 = new Point(ValorTxtBox1.Location.X, ValorTxtBox1.Location.Y + Deslocamento);
             ValorTextBox.Location = pointTextBox2;
             ValorTextBox.Size = new Size(170, 27);
 
             TextBox BanheirosTextBox = new TextBox();
-            Point pointTextBox3 = new Point(588, 162 + Deslocamento);
+            Point pointTextBox3 = new Point(BanheirosTxtBox.Location.X, BanheirosTxtBox.Location.Y + Deslocamento);
             BanheirosTextBox.Location = pointTextBox3;
             BanheirosTextBox.Size = new Size(170, 27);
 
             TextBox GaragemTextBox = new TextBox();
-            Point GaragemPoint = new Point(588, 162 + Deslocamento);
+            Point GaragemPoint = new Point(GaragemTxtBox.Location.X, GaragemTxtBox.Location.Y + Deslocamento);
             GaragemTextBox.Location = GaragemPoint;
             GaragemTextBox.Size = new Size(170, 27);
 
             TextBox DormitoriosTextBox = new TextBox();
-            Point DormitoriosPoint = new Point(588, 162 + Deslocamento);
+            Point DormitoriosPoint = new Point(DormTxtBox.Location.X, DormTxtBox.Location.Y + Deslocamento);
             DormitoriosTextBox.Location = DormitoriosPoint;
             DormitoriosTextBox.Size = new Size(170, 27);
+            
+            TextBox LinkImovelTxt = new TextBox();
+            Point LinkImovelTxtPoint = new Point(LinkImovelTxtBox.Location.X, LinkImovelTxtBox.Location.Y + Deslocamento);
+            LinkImovelTxt.Location = LinkImovelTxtPoint;
+            LinkImovelTxt.Size = new Size(170, 27);
 
             CriacaoInfoLine NewInfo = new CriacaoInfoLine()
             {
@@ -117,6 +132,9 @@ namespace ReportImoveis
                 ValorTxtBox = MetragemTextBox,
                 BanheirosTxtBox = ValorTextBox,
                 GaragemTxtBox = BanheirosTextBox,
+                DormTxtBox = DormitoriosTextBox,
+                Metragem = MetragemTextBox,
+                LinkImovelTxtBox = LinkImovelTxt,
             };
 
             CriacaoInfoLinesList.Add(NewInfo);
@@ -125,6 +143,9 @@ namespace ReportImoveis
             Controls.Add(MetragemTextBox);
             Controls.Add(ValorTextBox);
             Controls.Add(BanheirosTextBox);
+            Controls.Add(GaragemTextBox);
+            Controls.Add(DormitoriosTextBox);
+            Controls.Add(LinkImovelTxt);
 
         }
 

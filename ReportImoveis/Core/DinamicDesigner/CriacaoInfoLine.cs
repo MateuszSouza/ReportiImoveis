@@ -8,5 +8,6 @@
         public TextBox BanheirosTxtBox { get; set; }
         public TextBox GaragemTxtBox { get; set; }
         public TextBox DormTxtBox { get; set; }
+        public TextBox LinkImovelTxtBox { get; set; }
     }
 }
