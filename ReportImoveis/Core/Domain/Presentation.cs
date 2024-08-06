@@ -2,36 +2,17 @@
 {
     public class Presentation
     {
-        public Presentation()
-        {
-            
-        }
-        public Presentation(
-            List<Imovel> imovel, 
-            string titulo, 
-            string cliente, 
-            string corretor, 
-            Avaliacao avaliacao1, 
-            Avaliacao avaliacao2, 
-            Avaliacao avaliacao3)
-        {
-            Imoveis = imovel;
-            Titulo = titulo;
-            Cliente = cliente;
-            Corretor = corretor;
-            this.avaliacao1 = avaliacao1;
-            this.avaliacao2 = avaliacao2;
-            this.avaliacao3 = avaliacao3;
-        }
-
+         
         public List<Imovel> Imoveis { get; set; }
         public string Titulo { get; set; }
         public string Cliente { get; set; }
         public string Corretor { get; set; }
-        public Avaliacao avaliacao1 { get; set; }
-        public Avaliacao avaliacao2 { get; set; }
-        public Avaliacao avaliacao3 { get; set; }
-        public decimal basicAvaliation { get; set; }
+        public Avaliacao Otimista { get; set; }
+        public Avaliacao Mercado { get; set; }
+        public Avaliacao Otimo { get; set; }
+        public decimal AvaliacaoBase { get; set; }
+
+        public Presentation(){}
 
         public void CalculateBasicAvaliation()
         {
@@ -42,13 +23,21 @@
                 valor = valor + item.Valor;
             }
 
-            basicAvaliation = valor / Imoveis.Count;
+            AvaliacaoBase = valor / Imoveis.Count;
         }
     }
 
     public class Avaliacao()
     {
-        public decimal avaliacao { get; set; }
+       public decimal avaliacao { get; private set; }
         public int percentual { set; get; }
+
+        public void CalcularAvaliacao(decimal valorBase)
+        {
+            var PercentualEmPorcentagem = percentual / 100;
+            var parte = valorBase * PercentualEmPorcentagem;
+            avaliacao = parte + valorBase;
+            
+        }
     }
 }

@@ -47,15 +47,29 @@
             GaragemTxtBox = new TextBox();
             DormLabel = new Label();
             DormTxtBox = new TextBox();
-            CasaPictureBox = new PictureBox();
+            ImovelPictureBox = new PictureBox();
             LinkImovelTxtBox = new TextBox();
             Linklbl = new Label();
-            ((System.ComponentModel.ISupportInitialize)CasaPictureBox).BeginInit();
+            BtnRemover = new Button();
+            OtimistaTxtBox = new TextBox();
+            MercadoTxtBox = new TextBox();
+            OtimoTxtBox = new TextBox();
+            OtimistaLable = new Label();
+            OtimoLbl = new Label();
+            MercadoLabel = new Label();
+            OtimistaNumUpDown = new NumericUpDown();
+            MercadoNumUpDown = new NumericUpDown();
+            OtimoNumUpDown = new NumericUpDown();
+            CalcularBtn = new Button();
+            ((System.ComponentModel.ISupportInitialize)ImovelPictureBox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OtimistaNumUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)MercadoNumUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)OtimoNumUpDown).BeginInit();
             SuspendLayout();
             // 
             // SalvarDados
             // 
-            SalvarDados.Location = new Point(1308, 671);
+            SalvarDados.Location = new Point(1047, 672);
             SalvarDados.Name = "SalvarDados";
             SalvarDados.Size = new Size(94, 29);
             SalvarDados.TabIndex = 1;
@@ -66,7 +80,7 @@
             // 
             // AddImovel
             // 
-            AddImovel.Location = new Point(1408, 671);
+            AddImovel.Location = new Point(1047, 637);
             AddImovel.Name = "AddImovel";
             AddImovel.Size = new Size(94, 29);
             AddImovel.TabIndex = 2;
@@ -76,25 +90,24 @@
             // 
             // BanheirosTxtBox
             // 
-            BanheirosTxtBox.Location = new Point(534, 162);
+            BanheirosTxtBox.Location = new Point(325, 151);
             BanheirosTxtBox.Name = "BanheirosTxtBox";
-            BanheirosTxtBox.Size = new Size(170, 27);
+            BanheirosTxtBox.Size = new Size(90, 27);
             BanheirosTxtBox.TabIndex = 4;
             // 
             // metragemLabel
             // 
             metragemLabel.AutoSize = true;
-            metragemLabel.Location = new Point(126, 128);
+            metragemLabel.Location = new Point(113, 91);
             metragemLabel.Name = "metragemLabel";
             metragemLabel.Size = new Size(78, 20);
             metragemLabel.TabIndex = 5;
             metragemLabel.Text = "Metragem";
-            metragemLabel.Click += label1_Click;
             // 
             // labelValor
             // 
             labelValor.AutoSize = true;
-            labelValor.Location = new Point(331, 128);
+            labelValor.Location = new Point(217, 91);
             labelValor.Name = "labelValor";
             labelValor.Size = new Size(74, 20);
             labelValor.TabIndex = 6;
@@ -103,7 +116,7 @@
             // BanheirosLabel
             // 
             BanheirosLabel.AutoSize = true;
-            BanheirosLabel.Location = new Point(534, 128);
+            BanheirosLabel.Location = new Point(325, 91);
             BanheirosLabel.Name = "BanheirosLabel";
             BanheirosLabel.Size = new Size(74, 20);
             BanheirosLabel.TabIndex = 7;
@@ -112,33 +125,30 @@
             // ImovelLabel
             // 
             ImovelLabel.AutoSize = true;
-            ImovelLabel.Location = new Point(45, 169);
+            ImovelLabel.Location = new Point(30, 158);
             ImovelLabel.Name = "ImovelLabel";
             ImovelLabel.Size = new Size(66, 20);
             ImovelLabel.TabIndex = 14;
             ImovelLabel.Text = "Imóvel 1";
-            ImovelLabel.Click += label4_Click;
             // 
             // ValorTxtBox1
             // 
-            ValorTxtBox1.Location = new Point(331, 162);
+            ValorTxtBox1.Location = new Point(217, 151);
             ValorTxtBox1.Name = "ValorTxtBox1";
-            ValorTxtBox1.Size = new Size(170, 27);
+            ValorTxtBox1.Size = new Size(90, 27);
             ValorTxtBox1.TabIndex = 17;
-            ValorTxtBox1.TextChanged += PrecoUm_TextChanged;
             // 
             // MetragemTxtBox1
             // 
-            MetragemTxtBox1.Location = new Point(126, 162);
+            MetragemTxtBox1.Location = new Point(110, 151);
             MetragemTxtBox1.Name = "MetragemTxtBox1";
-            MetragemTxtBox1.Size = new Size(170, 27);
+            MetragemTxtBox1.Size = new Size(90, 27);
             MetragemTxtBox1.TabIndex = 20;
-            MetragemTxtBox1.TextChanged += textBox9_TextChanged;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(145, 68);
+            label5.Location = new Point(45, 35);
             label5.Name = "label5";
             label5.Size = new Size(145, 20);
             label5.TabIndex = 21;
@@ -146,7 +156,7 @@
             // 
             // NomeEstudo
             // 
-            NomeEstudo.Location = new Point(296, 65);
+            NomeEstudo.Location = new Point(196, 32);
             NomeEstudo.Name = "NomeEstudo";
             NomeEstudo.Size = new Size(203, 27);
             NomeEstudo.TabIndex = 22;
@@ -154,7 +164,7 @@
             // NomeCliente
             // 
             NomeCliente.AutoSize = true;
-            NomeCliente.Location = new Point(519, 70);
+            NomeCliente.Location = new Point(419, 37);
             NomeCliente.Name = "NomeCliente";
             NomeCliente.Size = new Size(58, 20);
             NomeCliente.TabIndex = 23;
@@ -162,7 +172,7 @@
             // 
             // NomeClienteTextBox
             // 
-            NomeClienteTextBox.Location = new Point(588, 63);
+            NomeClienteTextBox.Location = new Point(488, 30);
             NomeClienteTextBox.Name = "NomeClienteTextBox";
             NomeClienteTextBox.Size = new Size(259, 27);
             NomeClienteTextBox.TabIndex = 24;
@@ -170,7 +180,7 @@
             // CorretorLabel
             // 
             CorretorLabel.AutoSize = true;
-            CorretorLabel.Location = new Point(875, 68);
+            CorretorLabel.Location = new Point(775, 35);
             CorretorLabel.Name = "CorretorLabel";
             CorretorLabel.Size = new Size(67, 20);
             CorretorLabel.TabIndex = 25;
@@ -178,7 +188,7 @@
             // 
             // CorretorTextBox
             // 
-            CorretorTextBox.Location = new Point(948, 65);
+            CorretorTextBox.Location = new Point(848, 32);
             CorretorTextBox.Name = "CorretorTextBox";
             CorretorTextBox.Size = new Size(232, 27);
             CorretorTextBox.TabIndex = 26;
@@ -187,7 +197,7 @@
             // GaragemLabel
             // 
             GaragemLabel.AutoSize = true;
-            GaragemLabel.Location = new Point(736, 128);
+            GaragemLabel.Location = new Point(434, 91);
             GaragemLabel.Name = "GaragemLabel";
             GaragemLabel.Size = new Size(70, 20);
             GaragemLabel.TabIndex = 28;
@@ -195,15 +205,15 @@
             // 
             // GaragemTxtBox
             // 
-            GaragemTxtBox.Location = new Point(736, 162);
+            GaragemTxtBox.Location = new Point(434, 151);
             GaragemTxtBox.Name = "GaragemTxtBox";
-            GaragemTxtBox.Size = new Size(170, 27);
+            GaragemTxtBox.Size = new Size(90, 27);
             GaragemTxtBox.TabIndex = 27;
             // 
             // DormLabel
             // 
             DormLabel.AutoSize = true;
-            DormLabel.Location = new Point(928, 128);
+            DormLabel.Location = new Point(540, 91);
             DormLabel.Name = "DormLabel";
             DormLabel.Size = new Size(89, 20);
             DormLabel.TabIndex = 30;
@@ -211,43 +221,147 @@
             // 
             // DormTxtBox
             // 
-            DormTxtBox.Location = new Point(928, 162);
+            DormTxtBox.Location = new Point(540, 151);
             DormTxtBox.Name = "DormTxtBox";
-            DormTxtBox.Size = new Size(170, 27);
+            DormTxtBox.Size = new Size(90, 27);
             DormTxtBox.TabIndex = 29;
             // 
-            // CasaPictureBox
+            // ImovelPictureBox
             // 
-            CasaPictureBox.Location = new Point(1203, 30);
-            CasaPictureBox.Name = "CasaPictureBox";
-            CasaPictureBox.Size = new Size(125, 62);
-            CasaPictureBox.TabIndex = 31;
-            CasaPictureBox.TabStop = false;
+            ImovelPictureBox.BackColor = SystemColors.ControlLightLight;
+            ImovelPictureBox.Location = new Point(775, 123);
+            ImovelPictureBox.Name = "ImovelPictureBox";
+            ImovelPictureBox.Size = new Size(75, 75);
+            ImovelPictureBox.TabIndex = 31;
+            ImovelPictureBox.TabStop = false;
+            ImovelPictureBox.Click += PictureBox_Click;
             // 
             // LinkImovelTxtBox
             // 
-            LinkImovelTxtBox.Location = new Point(1115, 162);
+            LinkImovelTxtBox.Location = new Point(648, 151);
             LinkImovelTxtBox.Name = "LinkImovelTxtBox";
-            LinkImovelTxtBox.Size = new Size(170, 27);
+            LinkImovelTxtBox.Size = new Size(90, 27);
             LinkImovelTxtBox.TabIndex = 32;
             // 
             // Linklbl
             // 
             Linklbl.AutoSize = true;
-            Linklbl.Location = new Point(1115, 128);
+            Linklbl.Location = new Point(648, 91);
             Linklbl.Name = "Linklbl";
             Linklbl.Size = new Size(35, 20);
             Linklbl.TabIndex = 33;
             Linklbl.Text = "Link";
             // 
+            // BtnRemover
+            // 
+            BtnRemover.Location = new Point(1047, 602);
+            BtnRemover.Name = "BtnRemover";
+            BtnRemover.Size = new Size(94, 29);
+            BtnRemover.TabIndex = 34;
+            BtnRemover.Text = "Remover";
+            BtnRemover.UseVisualStyleBackColor = true;
+            BtnRemover.Click += BtnRemover_Click;
+            // 
+            // OtimistaTxtBox
+            // 
+            OtimistaTxtBox.Location = new Point(909, 123);
+            OtimistaTxtBox.Name = "OtimistaTxtBox";
+            OtimistaTxtBox.Size = new Size(125, 27);
+            OtimistaTxtBox.TabIndex = 35;
+            // 
+            // MercadoTxtBox
+            // 
+            MercadoTxtBox.Location = new Point(909, 198);
+            MercadoTxtBox.Name = "MercadoTxtBox";
+            MercadoTxtBox.Size = new Size(125, 27);
+            MercadoTxtBox.TabIndex = 36;
+            // 
+            // OtimoTxtBox
+            // 
+            OtimoTxtBox.Location = new Point(909, 270);
+            OtimoTxtBox.Name = "OtimoTxtBox";
+            OtimoTxtBox.Size = new Size(125, 27);
+            OtimoTxtBox.TabIndex = 37;
+            // 
+            // OtimistaLable
+            // 
+            OtimistaLable.AutoSize = true;
+            OtimistaLable.Location = new Point(909, 100);
+            OtimistaLable.Name = "OtimistaLable";
+            OtimistaLable.Size = new Size(65, 20);
+            OtimistaLable.TabIndex = 38;
+            OtimistaLable.Text = "Otimista";
+            // 
+            // OtimoLbl
+            // 
+            OtimoLbl.AutoSize = true;
+            OtimoLbl.Location = new Point(909, 247);
+            OtimoLbl.Name = "OtimoLbl";
+            OtimoLbl.Size = new Size(51, 20);
+            OtimoLbl.TabIndex = 39;
+            OtimoLbl.Text = "Ótimo";
+            // 
+            // MercadoLabel
+            // 
+            MercadoLabel.AutoSize = true;
+            MercadoLabel.Location = new Point(909, 175);
+            MercadoLabel.Name = "MercadoLabel";
+            MercadoLabel.Size = new Size(68, 20);
+            MercadoLabel.TabIndex = 40;
+            MercadoLabel.Text = "Mercado";
+            // 
+            // OtimistaNumUpDown
+            // 
+            OtimistaNumUpDown.Location = new Point(1047, 124);
+            OtimistaNumUpDown.Name = "OtimistaNumUpDown";
+            OtimistaNumUpDown.Size = new Size(44, 27);
+            OtimistaNumUpDown.TabIndex = 41;
+            // 
+            // MercadoNumUpDown
+            // 
+            MercadoNumUpDown.Location = new Point(1047, 199);
+            MercadoNumUpDown.Name = "MercadoNumUpDown";
+            MercadoNumUpDown.Size = new Size(44, 27);
+            MercadoNumUpDown.TabIndex = 42;
+            MercadoNumUpDown.ValueChanged += MercadoNumUpDown_ValueChanged;
+            // 
+            // OtimoNumUpDown
+            // 
+            OtimoNumUpDown.Location = new Point(1047, 271);
+            OtimoNumUpDown.Name = "OtimoNumUpDown";
+            OtimoNumUpDown.Size = new Size(44, 27);
+            OtimoNumUpDown.TabIndex = 43;
+            // 
+            // CalcularBtn
+            // 
+            CalcularBtn.Location = new Point(909, 314);
+            CalcularBtn.Margin = new Padding(2);
+            CalcularBtn.Name = "CalcularBtn";
+            CalcularBtn.Size = new Size(125, 29);
+            CalcularBtn.TabIndex = 44;
+            CalcularBtn.Text = "Calcular valores";
+            CalcularBtn.UseVisualStyleBackColor = true;
+            CalcularBtn.Click += CalcularBtn_Click;
+            // 
             // Criacao
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1527, 712);
+            ClientSize = new Size(1547, 712);
+            Controls.Add(CalcularBtn);
+            Controls.Add(OtimoNumUpDown);
+            Controls.Add(MercadoNumUpDown);
+            Controls.Add(OtimistaNumUpDown);
+            Controls.Add(MercadoLabel);
+            Controls.Add(OtimoLbl);
+            Controls.Add(OtimistaLable);
+            Controls.Add(OtimoTxtBox);
+            Controls.Add(MercadoTxtBox);
+            Controls.Add(OtimistaTxtBox);
+            Controls.Add(BtnRemover);
             Controls.Add(Linklbl);
             Controls.Add(LinkImovelTxtBox);
-            Controls.Add(CasaPictureBox);
+            Controls.Add(ImovelPictureBox);
             Controls.Add(DormLabel);
             Controls.Add(DormTxtBox);
             Controls.Add(GaragemLabel);
@@ -270,7 +384,10 @@
             Name = "Criacao";
             Text = "Criacao";
             Load += Criacao_Load;
-            ((System.ComponentModel.ISupportInitialize)CasaPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ImovelPictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OtimistaNumUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)MercadoNumUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)OtimoNumUpDown).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -295,8 +412,19 @@
         private TextBox GaragemTxtBox;
         private Label DormLabel;
         private TextBox DormTxtBox;
-        private PictureBox CasaPictureBox;
+        private PictureBox ImovelPictureBox;
         private TextBox LinkImovelTxtBox;
         private Label Linklbl;
+        private Button BtnRemover;
+        private TextBox OtimistaTxtBox;
+        private TextBox MercadoTxtBox;
+        private TextBox OtimoTxtBox;
+        private Label OtimistaLable;
+        private Label OtimoLbl;
+        private Label MercadoLabel;
+        private NumericUpDown OtimistaNumUpDown;
+        private NumericUpDown MercadoNumUpDown;
+        private NumericUpDown OtimoNumUpDown;
+        private Button CalcularBtn;
     }
 }
