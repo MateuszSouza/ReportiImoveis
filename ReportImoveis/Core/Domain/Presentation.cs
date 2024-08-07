@@ -29,14 +29,14 @@
 
     public class Avaliacao()
     {
-       public decimal avaliacao { get; private set; }
-        public int percentual { set; get; }
+        public decimal ValorAvaliacao { get; private set; }
+        public decimal percentual { set; get; }
 
         public void CalcularAvaliacao(decimal valorBase)
         {
             var PercentualEmPorcentagem = percentual / 100;
             var parte = valorBase * PercentualEmPorcentagem;
-            avaliacao = parte + valorBase;
+            ValorAvaliacao = parte + valorBase;
             
         }
     }

@@ -3,6 +3,7 @@
 using Newtonsoft.Json;
 using ReportImoveis.Core.DinamicDesigner;
 using ReportImoveis.Core.Domain;
+using System.Windows.Forms;
 
 namespace ReportImoveis
 {
@@ -24,7 +25,8 @@ namespace ReportImoveis
                 GaragemTxtBox = GaragemTxtBox,
                 DormTxtBox = DormTxtBox,
                 Metragem = MetragemTxtBox1,
-                LinkImovelTxtBox = LinkImovelTxtBox
+                LinkImovelTxtBox = LinkImovelTxtBox,
+                NewPictureBox = ImovelPictureBox
             });
         }
 
@@ -43,7 +45,10 @@ namespace ReportImoveis
 
         private void SalvarDados_Click(object sender, EventArgs e)
         {
-            Apresentacao = CriarApresentacaoData();
+            if (Apresentacao is null)
+            {
+                Apresentacao = CriarApresentacaoData();
+            }
 
             var serializado = JsonConvert.SerializeObject(Apresentacao);
             MessageBox.Show("Texto inserido" + serializado);
@@ -56,13 +61,14 @@ namespace ReportImoveis
             {
                 ListaDeImoveis.Add(new Imovel()
                 {
-                    Metragem = item.Metragem.Text != null ? int.Parse(item.Metragem.Text) : 0,
-                    Valor = item.ValorTxtBox.Text != null ? decimal.Parse(item.ValorTxtBox.Text) : 0,
-                    NumeroBanheiros = item.BanheirosTxtBox.Text != null ? int.Parse(item.BanheirosTxtBox.Text) : 0,
-                    Garagem = item.GaragemTxtBox.Text != null ? int.Parse(item.GaragemTxtBox.Text) : 0,
-                    NumeroDormitorios = item.DormTxtBox.Text != null ? int.Parse(item.DormTxtBox.Text) : 0,
-                    LinkImovel = item.LinkImovelTxtBox.Text != null ? item.LinkImovelTxtBox.Text : ""
-                });
+                    Metragem = !string.IsNullOrEmpty(item.Metragem.Text) ? int.Parse(item.Metragem.Text) : 0,
+                    Valor = !string.IsNullOrEmpty(item.ValorTxtBox.Text) ? decimal.Parse(item.ValorTxtBox.Text) : 0,
+                    NumeroBanheiros = !string.IsNullOrEmpty(item.BanheirosTxtBox.Text) ? int.Parse(item.BanheirosTxtBox.Text) : 0,
+                    Garagem = !string.IsNullOrEmpty(item.GaragemTxtBox.Text) ? int.Parse(item.GaragemTxtBox.Text) : 0,
+                    NumeroDormitorios = !string.IsNullOrEmpty(item.DormTxtBox.Text) ? int.Parse(item.DormTxtBox.Text) : 0,
+                    LinkImovel = !string.IsNullOrEmpty(item.LinkImovelTxtBox.Text) ? item.LinkImovelTxtBox.Text : "",
+                    ImagemImovel = item.NewPictureBox.Image
+                });  
             }
 
 
@@ -79,10 +85,8 @@ namespace ReportImoveis
             return apresentacao;
         }
 
-        private void SaveData(String data)
+        private void SaveData(string data)
         {
-            // Displays a SaveFileDialog so the user can save the Image
-            // assigned to Button2.
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.Title = "Save";
 
@@ -112,13 +116,13 @@ namespace ReportImoveis
             MetragemTextBox.Size = size;
 
             TextBox ValorTextBox = new TextBox();
-            Point pointTextBox2 = new Point(ValorTxtBox1.Location.X, ValorTxtBox1.Location.Y + Deslocamento);
-            ValorTextBox.Location = pointTextBox2;
+            Point ValorTextBox2 = new Point(ValorTxtBox1.Location.X, ValorTxtBox1.Location.Y + Deslocamento);
+            ValorTextBox.Location = ValorTextBox2;
             ValorTextBox.Size = size;
 
             TextBox BanheirosTextBox = new TextBox();
-            Point pointTextBox3 = new Point(BanheirosTxtBox.Location.X, BanheirosTxtBox.Location.Y + Deslocamento);
-            BanheirosTextBox.Location = pointTextBox3;
+            Point BanheiroTextBox = new Point(BanheirosTxtBox.Location.X, BanheirosTxtBox.Location.Y + Deslocamento);
+            BanheirosTextBox.Location = BanheiroTextBox;
             BanheirosTextBox.Size = size;
 
             TextBox GaragemTextBox = new TextBox();
@@ -146,12 +150,13 @@ namespace ReportImoveis
             CriacaoInfoLine NewInfo = new CriacaoInfoLine()
             {
                 Label = label,
-                ValorTxtBox = MetragemTextBox,
-                BanheirosTxtBox = ValorTextBox,
-                GaragemTxtBox = BanheirosTextBox,
+                ValorTxtBox = ValorTextBox,
+                BanheirosTxtBox = BanheirosTextBox,
+                GaragemTxtBox = GaragemTextBox,
                 DormTxtBox = DormitoriosTextBox,
                 Metragem = MetragemTextBox,
                 LinkImovelTxtBox = LinkImovelTxt,
+                NewPictureBox = NewPictureBox,
             };
 
             CriacaoInfoLinesList.Add(NewInfo);
@@ -177,13 +182,20 @@ namespace ReportImoveis
                 Image imageForPictureBox = Image.FromFile(_OpenfileDialog.FileName);
                 SelectedPictureBox.Image = imageForPictureBox;
                 SelectedPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                SelectedPictureBox.ImageLocation = _OpenfileDialog.FileName;
             }
         }
 
         private void BtnRemover_Click(object sender, EventArgs e)
         {
+            if (CriacaoInfoLinesList.Count <= 1)
+            {
+                return;
+            }
             DecrementarNumerDeImoveis();
+
             var ultimo = CriacaoInfoLinesList.Last();
+
             Controls.Remove(ultimo.Label);
             Controls.Remove(ultimo.Metragem);
             Controls.Remove(ultimo.ValorTxtBox);
@@ -192,11 +204,13 @@ namespace ReportImoveis
             Controls.Remove(ultimo.DormTxtBox);
             Controls.Remove(ultimo.LinkImovelTxtBox);
             Controls.Remove(ultimo.NewPictureBox);
+
+            CriacaoInfoLinesList.Remove(ultimo);
         }
 
         private void CalcularBtn_Click(object sender, EventArgs e)
         {
-            if (Apresentacao == null)
+            if (Apresentacao is null)
             {
                 Apresentacao = CriarApresentacaoData();
             }
@@ -205,29 +219,40 @@ namespace ReportImoveis
 
             Apresentacao.Otimista = new Avaliacao()
             {
-                percentual = int.Parse(OtimistaTxtBox.Text),
+                percentual = OtimistaNumUpDown.Value,
             };
             Apresentacao.Otimista.CalcularAvaliacao(Apresentacao.AvaliacaoBase);
+            OtimistaTxtBox.Text = Apresentacao.Otimista.ValorAvaliacao.ToString();
 
             Apresentacao.Otimo = new Avaliacao()
             {
-                percentual = int.Parse(OtimoNumUpDown.Text),
+                percentual = OtimoNumUpDown.Value
             };
             Apresentacao.Otimo.CalcularAvaliacao(Apresentacao.AvaliacaoBase);
+            OtimoTxtBox.Text = Apresentacao.Otimo.ValorAvaliacao.ToString();
 
             Apresentacao.Mercado = new Avaliacao()
             {
-                percentual = int.Parse(MercadoNumUpDown.Text),
+                percentual = MercadoNumUpDown.Value
             };
             Apresentacao.Mercado.CalcularAvaliacao(Apresentacao.AvaliacaoBase);
+            MercadoTxtBox.Text = Apresentacao.Mercado.ValorAvaliacao.ToString();
 
         }
 
         private void MercadoNumUpDown_ValueChanged(object sender, EventArgs e)
         {
-            NumericUpDown numericUpDown = (NumericUpDown)sender;
+            
+        }
 
-            numericUpDown.Value = numericUpDown.Value + 5;
+        private void OtimistaNumUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void OtimoNumUpDown_ValueChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

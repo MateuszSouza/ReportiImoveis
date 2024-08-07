@@ -8,5 +8,6 @@
         public int Garagem { get; set; }
         public int NumeroDormitorios { get; set; }
         public string LinkImovel { get; set;}
+        public Image ImagemImovel { get; set; }
     }
 }
