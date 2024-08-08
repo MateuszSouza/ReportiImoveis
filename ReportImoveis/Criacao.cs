@@ -61,14 +61,14 @@ namespace ReportImoveis
             {
                 ListaDeImoveis.Add(new Imovel()
                 {
-                    Metragem = !string.IsNullOrEmpty(item.Metragem.Text) ? int.Parse(item.Metragem.Text) : 0,
-                    Valor = !string.IsNullOrEmpty(item.ValorTxtBox.Text) ? decimal.Parse(item.ValorTxtBox.Text) : 0,
-                    NumeroBanheiros = !string.IsNullOrEmpty(item.BanheirosTxtBox.Text) ? int.Parse(item.BanheirosTxtBox.Text) : 0,
-                    Garagem = !string.IsNullOrEmpty(item.GaragemTxtBox.Text) ? int.Parse(item.GaragemTxtBox.Text) : 0,
-                    NumeroDormitorios = !string.IsNullOrEmpty(item.DormTxtBox.Text) ? int.Parse(item.DormTxtBox.Text) : 0,
+                    Metragem = !int.TryParse(item.Metragem.Text, out var metragem) ? metragem : 0,
+                    Valor = !decimal.TryParse(item.ValorTxtBox.Text, out var valor) ? valor : 0,
+                    NumeroBanheiros = !int.TryParse(item.BanheirosTxtBox.Text, out var numBathromm) ? numBathromm : 0,
+                    Garagem = !int.TryParse(item.GaragemTxtBox.Text, out var garagem) ? garagem : 0,
+                    NumeroDormitorios = !int.TryParse(item.DormTxtBox.Text, out var numDorm) ? numDorm : 0,
                     LinkImovel = !string.IsNullOrEmpty(item.LinkImovelTxtBox.Text) ? item.LinkImovelTxtBox.Text : "",
-                    ImagemImovel = item.NewPictureBox.Image
-                });  
+                    ImagemImovelPath = item.NewPictureBox.ImageLocation
+                });
             }
 
 
@@ -87,15 +87,14 @@ namespace ReportImoveis
 
         private void SaveData(string data)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Title = "Save";
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Title = "Save";
+            saveFileDialog.Filter = "";
 
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                File.WriteAllText(saveFileDialog1.FileName, data);
+                File.WriteAllText(saveFileDialog.FileName, data);
             }
-            // If the file name is not an empty string open it for saving.
-
         }
 
         private void AddImovel_Click(object sender, EventArgs e)
@@ -104,48 +103,14 @@ namespace ReportImoveis
             Deslocamento = NumeroDeImoveis * 80;
             var size = new Size(100, 27);
 
-            Point LabelPoint = new Point(ImovelLabel.Location.X, ImovelLabel.Location.Y + Deslocamento);
-            Label label = new Label();
-            label.Location = LabelPoint;
-            label.AutoSize = true;
-            label.Text = "imóvel " + NumeroDeImoveis;
-
-            TextBox MetragemTextBox = new TextBox();
-            Point pointTextBox1 = new Point(MetragemTxtBox1.Location.X, MetragemTxtBox1.Location.Y + Deslocamento);
-            MetragemTextBox.Location = pointTextBox1;
-            MetragemTextBox.Size = size;
-
-            TextBox ValorTextBox = new TextBox();
-            Point ValorTextBox2 = new Point(ValorTxtBox1.Location.X, ValorTxtBox1.Location.Y + Deslocamento);
-            ValorTextBox.Location = ValorTextBox2;
-            ValorTextBox.Size = size;
-
-            TextBox BanheirosTextBox = new TextBox();
-            Point BanheiroTextBox = new Point(BanheirosTxtBox.Location.X, BanheirosTxtBox.Location.Y + Deslocamento);
-            BanheirosTextBox.Location = BanheiroTextBox;
-            BanheirosTextBox.Size = size;
-
-            TextBox GaragemTextBox = new TextBox();
-            Point GaragemPoint = new Point(GaragemTxtBox.Location.X, GaragemTxtBox.Location.Y + Deslocamento);
-            GaragemTextBox.Location = GaragemPoint;
-            GaragemTextBox.Size = size;
-
-            TextBox DormitoriosTextBox = new TextBox();
-            Point DormitoriosPoint = new Point(DormTxtBox.Location.X, DormTxtBox.Location.Y + Deslocamento);
-            DormitoriosTextBox.Location = DormitoriosPoint;
-            DormitoriosTextBox.Size = size;
-
-            TextBox LinkImovelTxt = new TextBox();
-            Point LinkImovelTxtPoint = new Point(LinkImovelTxtBox.Location.X, LinkImovelTxtBox.Location.Y + Deslocamento);
-            LinkImovelTxt.Location = LinkImovelTxtPoint;
-            LinkImovelTxt.Size = size;
-
-            PictureBox NewPictureBox = new PictureBox();
-            Point PictureBoxSize = new Point(ImovelPictureBox.Location.X, ImovelPictureBox.Location.Y + Deslocamento);
-            NewPictureBox.Location = PictureBoxSize;
-            NewPictureBox.Size = new Size(75, 75);
-            NewPictureBox.BackColor = Color.White;
-            NewPictureBox.Click += PictureBox_Click;
+            Label label = CreateLabel("imóvel " + NumeroDeImoveis, ImovelLabel.Location.X, ImovelLabel.Location.Y + Deslocamento);
+            TextBox MetragemTextBox = CreateTextBox(MetragemTxtBox1.Location.X, MetragemTxtBox1.Location.Y + Deslocamento, size);
+            TextBox ValorTextBox = CreateTextBox(ValorTxtBox1.Location.X, ValorTxtBox1.Location.Y + Deslocamento, size);
+            TextBox BanheirosTextBox = CreateTextBox(BanheirosTxtBox.Location.X, BanheirosTxtBox.Location.Y + Deslocamento, size);
+            TextBox GaragemTextBox = CreateTextBox(GaragemTxtBox.Location.X, GaragemTxtBox.Location.Y + Deslocamento, size);
+            TextBox DormitoriosTextBox = CreateTextBox(DormTxtBox.Location.X, DormTxtBox.Location.Y + Deslocamento, size);
+            TextBox LinkImovelTxt = CreateTextBox(LinkImovelTxtBox.Location.X, LinkImovelTxtBox.Location.Y + Deslocamento, size);
+            PictureBox NewPictureBox = CreatePictureBox(ImovelPictureBox.Location.X, ImovelPictureBox.Location.Y + Deslocamento);
 
             CriacaoInfoLine NewInfo = new CriacaoInfoLine()
             {
@@ -169,8 +134,35 @@ namespace ReportImoveis
             Controls.Add(DormitoriosTextBox);
             Controls.Add(LinkImovelTxt);
             Controls.Add(NewPictureBox);
-
         }
+
+        private Label CreateLabel(string text, int x, int y)
+        {
+            Label label = new Label();
+            label.Location = new Point(x, y);
+            label.AutoSize = true;
+            label.Text = text;
+            return label;
+        }
+
+        private TextBox CreateTextBox(int x, int y, Size size)
+        {
+            TextBox textBox = new TextBox();
+            textBox.Location = new Point(x, y);
+            textBox.Size = size;
+            return textBox;
+        }
+
+        private PictureBox CreatePictureBox(int x, int y)
+        {
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.Location = new Point(x, y);
+            pictureBox.Size = new Size(75, 75);
+            pictureBox.BackColor = Color.White;
+            pictureBox.Click += PictureBox_Click;
+            return pictureBox;
+        }
+
 
         private void PictureBox_Click(object sender, EventArgs e)
         {
@@ -240,19 +232,112 @@ namespace ReportImoveis
 
         }
 
-        private void MercadoNumUpDown_ValueChanged(object sender, EventArgs e)
+        private void CarregarBtn_Click(object sender, EventArgs e)
         {
-            
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Title = "Open";
+
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string data = File.ReadAllText(openFileDialog1.FileName);
+                Apresentacao = JsonConvert.DeserializeObject<Presentation>(data);
+                PopulateForm(Apresentacao);
+            }
         }
 
-        private void OtimistaNumUpDown_ValueChanged(object sender, EventArgs e)
+        private void PopulateForm(Presentation apresentacao)
         {
-            
+            // Limpa os controles criados dinamicamente, preservando o item na posição 0
+            ClearForm();
+
+            CorretorTextBox.Text = apresentacao.Corretor;
+            NomeClienteTextBox.Text = apresentacao.Cliente;
+            NomeEstudo.Text = apresentacao.Titulo;
+
+            // Atualiza o item na posição 0 com os dados do primeiro imóvel
+            if (CriacaoInfoLinesList.Count > 0 && apresentacao.Imoveis.Count > 0)
+            {
+                AtualizarItem(CriacaoInfoLinesList[0], apresentacao.Imoveis[0]);
+            }
+
+            for (int i = 1; i < apresentacao.Imoveis.Count; i++)
+            {
+                IncrementoNumeroImoveis();
+                Deslocamento = NumeroDeImoveis * 80;
+                var size = new Size(100, 27);
+
+                Label label = CreateLabel("imóvel " + NumeroDeImoveis, ImovelLabel.Location.X, ImovelLabel.Location.Y + Deslocamento);
+                TextBox MetragemTextBox = CreateTextBox(MetragemTxtBox1.Location.X, MetragemTxtBox1.Location.Y + Deslocamento, size);
+                TextBox ValorTextBox = CreateTextBox(ValorTxtBox1.Location.X, ValorTxtBox1.Location.Y + Deslocamento, size);
+                TextBox BanheirosTextBox = CreateTextBox(BanheirosTxtBox.Location.X, BanheirosTxtBox.Location.Y + Deslocamento, size);
+                TextBox GaragemTextBox = CreateTextBox(GaragemTxtBox.Location.X, GaragemTxtBox.Location.Y + Deslocamento, size);
+                TextBox DormitoriosTextBox = CreateTextBox(DormTxtBox.Location.X, DormTxtBox.Location.Y + Deslocamento, size);
+                TextBox LinkImovelTxt = CreateTextBox(LinkImovelTxtBox.Location.X, LinkImovelTxtBox.Location.Y + Deslocamento, size);
+                PictureBox NewPictureBox = CreatePictureBox(ImovelPictureBox.Location.X, ImovelPictureBox.Location.Y + Deslocamento);
+
+                // Preenche os controles com os dados do imóvel
+                MetragemTextBox.Text = apresentacao.Imoveis[i].Metragem.ToString();
+                ValorTextBox.Text = apresentacao.Imoveis[i].Valor.ToString();
+                BanheirosTextBox.Text = apresentacao.Imoveis[i].NumeroBanheiros.ToString();
+                GaragemTextBox.Text = apresentacao.Imoveis[i].Garagem.ToString();
+                DormitoriosTextBox.Text = apresentacao.Imoveis[i].NumeroDormitorios.ToString();
+                LinkImovelTxt.Text = apresentacao.Imoveis[i].LinkImovel;
+                NewPictureBox.ImageLocation = apresentacao.Imoveis[i].ImagemImovelPath;
+
+                CriacaoInfoLine newInfo = new CriacaoInfoLine()
+                {
+                    Label = label,
+                    ValorTxtBox = ValorTextBox,
+                    BanheirosTxtBox = BanheirosTextBox,
+                    GaragemTxtBox = GaragemTextBox,
+                    DormTxtBox = DormitoriosTextBox,
+                    Metragem = MetragemTextBox,
+                    LinkImovelTxtBox = LinkImovelTxt,
+                    NewPictureBox = NewPictureBox,
+                };
+
+                CriacaoInfoLinesList.Add(newInfo);
+
+                Controls.Add(label);
+                Controls.Add(MetragemTextBox);
+                Controls.Add(ValorTextBox);
+                Controls.Add(BanheirosTextBox);
+                Controls.Add(GaragemTextBox);
+                Controls.Add(DormitoriosTextBox);
+                Controls.Add(LinkImovelTxt);
+                Controls.Add(NewPictureBox);
+            }
         }
 
-        private void OtimoNumUpDown_ValueChanged(object sender, EventArgs e)
+        private void AtualizarItem(CriacaoInfoLine item, Imovel imovel)
         {
-           
+            item.Metragem.Text = imovel.Metragem.ToString();
+            item.ValorTxtBox.Text = imovel.Valor.ToString();
+            item.BanheirosTxtBox.Text = imovel.NumeroBanheiros.ToString();
+            item.GaragemTxtBox.Text = imovel.Garagem.ToString();
+            item.DormTxtBox.Text = imovel.NumeroDormitorios.ToString();
+            item.LinkImovelTxtBox.Text = imovel.LinkImovel;
+            item.NewPictureBox.ImageLocation = imovel.ImagemImovelPath;
+        }
+
+        private void ClearForm()
+        {
+            // Remove todos os controles criados dinamicamente, preservando o item na posição 0
+            for (int i = CriacaoInfoLinesList.Count - 1; i > 0; i--)
+            {
+                Controls.Remove(CriacaoInfoLinesList[i].Label);
+                Controls.Remove(CriacaoInfoLinesList[i].Metragem);
+                Controls.Remove(CriacaoInfoLinesList[i].ValorTxtBox);
+                Controls.Remove(CriacaoInfoLinesList[i].BanheirosTxtBox);
+                Controls.Remove(CriacaoInfoLinesList[i].GaragemTxtBox);
+                Controls.Remove(CriacaoInfoLinesList[i].DormTxtBox);
+                Controls.Remove(CriacaoInfoLinesList[i].LinkImovelTxtBox);
+                Controls.Remove(CriacaoInfoLinesList[i].NewPictureBox);
+                CriacaoInfoLinesList.RemoveAt(i);
+            }
+            ListaDeImoveis.Clear();
+            NumeroDeImoveis = 0;
+            Deslocamento = 0;
         }
     }
 }

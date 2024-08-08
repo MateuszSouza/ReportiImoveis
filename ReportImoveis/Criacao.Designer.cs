@@ -64,6 +64,7 @@
             PercentLbl1 = new Label();
             label1 = new Label();
             label2 = new Label();
+            CarregarBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)ImovelPictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)OtimistaNumUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)MercadoNumUpDown).BeginInit();
@@ -83,7 +84,7 @@
             // 
             // AddImovel
             // 
-            AddImovel.Location = new Point(1113, 629);
+            AddImovel.Location = new Point(1113, 594);
             AddImovel.Name = "AddImovel";
             AddImovel.Size = new Size(94, 29);
             AddImovel.TabIndex = 2;
@@ -257,7 +258,7 @@
             // 
             // BtnRemover
             // 
-            BtnRemover.Location = new Point(1113, 594);
+            BtnRemover.Location = new Point(1113, 559);
             BtnRemover.Name = "BtnRemover";
             BtnRemover.Size = new Size(94, 29);
             BtnRemover.TabIndex = 34;
@@ -386,11 +387,22 @@
             label2.TabIndex = 47;
             label2.Text = "%";
             // 
+            // button1
+            // 
+            CarregarBtn.Location = new Point(1113, 629);
+            CarregarBtn.Name = "CarregarBtn";
+            CarregarBtn.Size = new Size(94, 29);
+            CarregarBtn.TabIndex = 48;
+            CarregarBtn.Text = "Carregar";
+            CarregarBtn.UseVisualStyleBackColor = true;
+            CarregarBtn.Click += CarregarBtn_Click;
+            // 
             // Criacao
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1246, 712);
+            Controls.Add(CarregarBtn);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(PercentLbl1);
@@ -475,5 +487,6 @@
         private Label PercentLbl1;
         private Label label1;
         private Label label2;
+        private Button CarregarBtn;
     }
 }
