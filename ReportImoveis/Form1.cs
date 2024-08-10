@@ -3,11 +3,13 @@ using System.Windows.Forms;
 using System.Drawing;
 using Newtonsoft.Json;
 using ReportImoveis.Core.Domain;
+using ReportImoveis.Core.DinamicDesigner;
 
 namespace ReportImoveis
 {
     public partial class Form1 : Form
     {
+        private CriacaoInfoLine CriacaoInfoLine = new CriacaoInfoLine();
         public Form1()
         {
             InitializeComponent();
@@ -56,27 +58,34 @@ namespace ReportImoveis
         {
 
 
-            using (var FolderBrowserDialog = new FolderBrowserDialog())
+            using (var folderBrowserDialog = new FolderBrowserDialog())
             {
-                DialogResult result = FolderBrowserDialog.ShowDialog();
+                //folderBrowserDialog.fil
+                DialogResult result = folderBrowserDialog.ShowDialog();
 
-                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(FolderBrowserDialog.SelectedPath))
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
                 {
-                    var DirectoryPath = Path.Combine(FolderBrowserDialog.SelectedPath, NomeArquivo.Text);
+                    var DirectoryPath = Path.Combine(folderBrowserDialog.SelectedPath, NomeArquivo.Text);
 
                     Directory.CreateDirectory(DirectoryPath);
 
-                    var finalPath = Path.Combine(DirectoryPath, NomeArquivo.Text + ".txt");
-                    var ImagePath = Path.Combine(DirectoryPath, NomeArquivo.Text + ".jpg");
-                    MessageBox.Show("CompletePAth: " + finalPath);
+                    var finalPath  = Path.Combine(DirectoryPath, NomeArquivo.Text + ".txt");
+                    var ImageName  = Path.GetFileNameWithoutExtension(CriacaoInfoLine.NewPictureBox.ImageLocation);
+                    var ImagemPath = Path.Combine(DirectoryPath, ImageName + ".jpg");
+
+                    MessageBox.Show("CompletePAth: " + ImagemPath);
+
                     var dadosTest = new teste()
                     {
                         dados = ConteudoTxtBox.Text,
-                        imagemPath = pictureBoxTeste.ImageLocation,
+                        imagemPath = ImagemPath,
                     };
+
                     var dados = JsonConvert.SerializeObject(dadosTest);
+                    pictureBoxTeste.Image.Save(ImagemPath);
+                 
                     File.WriteAllText(finalPath, dados);
-                    File.WriteAllBytes(ImagePath, pictureBoxTeste.Image);
+
 
                 }
             }
@@ -84,16 +93,16 @@ namespace ReportImoveis
 
         private void PictureBox_Click(object sender, EventArgs e)
         {
-            PictureBox SelectedPictureBox = (PictureBox)sender;
             OpenFileDialog _OpenfileDialog = new OpenFileDialog();
             _OpenfileDialog.Filter = "Images (*.BMP;*.JPG;*.GIF,*.PNG,*.TIFF)|*.BMP;*.JPG;*.GIF;*.PNG;*.TIFF";
             if (_OpenfileDialog.ShowDialog() == DialogResult.OK)
             {
                 Image imageForPictureBox = Image.FromFile(_OpenfileDialog.FileName);
-                SelectedPictureBox.Image = imageForPictureBox;
-                SelectedPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-                SelectedPictureBox.ImageLocation = _OpenfileDialog.FileName;
+                
+                pictureBoxTeste.SizeMode = PictureBoxSizeMode.StretchImage;
+                pictureBoxTeste.ImageLocation = _OpenfileDialog.FileName;
             }
+            CriacaoInfoLine.NewPictureBox = pictureBoxTeste;
         }
 
         private class teste()
@@ -111,7 +120,11 @@ namespace ReportImoveis
             {
                 string data = File.ReadAllText(openFileDialog1.FileName);
                 var datas = JsonConvert.DeserializeObject<teste>(data);
-                
+                pictureBoxTeste.ImageLocation = datas.imagemPath;
+                pictureBoxTeste.Image = Image.FromFile(datas.imagemPath);
+                pictureBoxTeste.SizeMode = PictureBoxSizeMode.StretchImage;
+                NomeArquivo.Text = openFileDialog1.FileName;
+                ConteudoTxtBox.Text = datas.dados;
             }
         }
     }

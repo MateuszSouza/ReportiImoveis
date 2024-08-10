@@ -50,9 +50,9 @@ namespace ReportImoveis
                 Apresentacao = CriarApresentacaoData();
             }
 
-            var serializado = JsonConvert.SerializeObject(Apresentacao);
-            MessageBox.Show("Texto inserido" + serializado);
-            SaveData(serializado);
+            //var serializado = JsonConvert.SerializeObject(Apresentacao);
+            //MessageBox.Show("Texto inserido" + serializado);
+            SaveData(Apresentacao);
         }
 
         private Presentation CriarApresentacaoData()
@@ -85,16 +85,32 @@ namespace ReportImoveis
             return apresentacao;
         }
 
-        private void SaveData(string data)
+        private void SaveData(Presentation data)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Title = "Save";
-            saveFileDialog.Filter = "";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            using FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+                 
+            if (folderBrowserDialog.ShowDialog() == DialogResult.OK 
+                && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
             {
-                File.WriteAllText(saveFileDialog.FileName, data);
-            }
+                var DirectoryPath = 
+                    Path.Combine(folderBrowserDialog.SelectedPath, data.Titulo);
+
+                Directory.CreateDirectory(DirectoryPath);
+
+                var ApresentacaoPathName = Path.Combine(DirectoryPath, data.Titulo + ".txt");
+                
+                foreach (var item in data.Imoveis)
+                {
+                    var ImageName = Path.GetFileNameWithoutExtension(item.ImagemImovelPath);
+                    var ImagemPath = Path.Combine(DirectoryPath, ImageName + ".jpg");
+                    MessageBox.Show("Complete image Path: " + ImagemPath);
+                    var imagem = Image.FromFile(item.ImagemImovelPath);
+                    imagem.Save(ImagemPath);
+                }
+
+                var arquivoDeApresentacao = JsonConvert.SerializeObject(data);
+                File.WriteAllText(ApresentacaoPathName, arquivoDeApresentacao);
+            }              
         }
 
         private void AddImovel_Click(object sender, EventArgs e)
