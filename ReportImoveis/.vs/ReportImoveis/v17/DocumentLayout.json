@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|e:\\projects\\reportiimoveis\\reportimoveis\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\criacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|e:\\projects\\reportiimoveis\\reportimoveis\\criacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:criacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\core\\domain\\presentation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:core\\domain\\presentation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|e:\\projects\\reportiimoveis\\reportimoveis\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\criacao.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:criacao.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\core\\domain\\presentation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:core\\domain\\presentation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\criacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:criacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\criacao.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|solutionrelative:criacao.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DDE51D44-DF22-4B35-A709-A22558CD483D}|ReportImoveis.csproj|E:\\Projects\\ReportiImoveis\\ReportImoveis\\core\\dinamicdesigner\\criacaoinfoline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -45,18 +45,31 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 115,
-          "SelectedChildIndex": 0,
+          "DockedWidth": 181,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Form1.cs",
+              "RelativeToolTip": "Form1.cs",
+              "ViewState": "AQIAACMAAAAAAAAAAAAuwDEAAAAgAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-13T22:45:19.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Criacao.cs",
               "DocumentMoniker": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Criacao.cs",
               "RelativeDocumentMoniker": "Criacao.cs",
               "ToolTip": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Criacao.cs",
               "RelativeToolTip": "Criacao.cs",
-              "ViewState": "AQIAAF4AAAAAAAAAAAAAwGwAAAARAAAA",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAcwEQAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-26T02:22:53.875Z",
               "EditorCaption": ""
@@ -76,25 +89,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Presentation.cs",
-              "DocumentMoniker": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Core\\Domain\\Presentation.cs",
-              "RelativeDocumentMoniker": "Core\\Domain\\Presentation.cs",
-              "ToolTip": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Core\\Domain\\Presentation.cs",
-              "RelativeToolTip": "Core\\Domain\\Presentation.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-06T18:44:53.583Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
               "ToolTip": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Form1.Designer.cs",
               "RelativeToolTip": "Form1.Designer.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAzwMcAAAAmAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAHEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-05T20:08:38.999Z",
               "EditorCaption": ""
@@ -121,11 +121,25 @@
               "RelativeToolTip": "Core\\DinamicDesigner\\CriacaoInfoLine.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAuwAIAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-26T14:40:09.588Z"
+              "WhenOpened": "2024-07-26T14:40:09.588Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
+              "Title": "Presentation.cs",
+              "DocumentMoniker": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Core\\Domain\\Presentation.cs",
+              "RelativeDocumentMoniker": "Core\\Domain\\Presentation.cs",
+              "ToolTip": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Core\\Domain\\Presentation.cs",
+              "RelativeToolTip": "Core\\Domain\\Presentation.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAgwBEAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-06T18:44:53.583Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "Criacao.Designer.cs",
               "DocumentMoniker": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Criacao.Designer.cs",
               "RelativeDocumentMoniker": "Criacao.Designer.cs",
@@ -138,7 +152,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 5,
               "Title": "Criacao.cs [Design]",
               "DocumentMoniker": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Criacao.cs",
               "RelativeDocumentMoniker": "Criacao.cs",
@@ -147,25 +161,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-26T02:59:48.169Z",
               "EditorCaption": " [Design]"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 105,
-          "SelectedChildIndex": 0,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Form1.cs",
-              "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "E:\\Projects\\ReportiImoveis\\ReportImoveis\\Form1.cs",
-              "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAFEAAAAAAAAAAAAuwGQAAAALAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-07T23:40:54.899Z",
-              "EditorCaption": ""
             }
           ]
         }

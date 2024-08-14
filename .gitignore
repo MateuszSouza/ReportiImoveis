@@ -33,4 +33,7 @@
 
 *.vsidx
 *.bin
-*
+*/bin/*
+Release/
+bin/
+obj/

@@ -1,18 +1,44 @@
-﻿namespace ReportImoveis.Core.Domain
+﻿using ReportImoveis.Core.DinamicDesigner;
+
+namespace ReportImoveis.Core.Domain
 {
     public class Presentation
     {
          
-        public List<Imovel> Imoveis { get; set; }
+        public List<Imovel> Imoveis = new List<Imovel>();
         public string Titulo { get; set; }
         public string Cliente { get; set; }
         public string Corretor { get; set; }
-        public Avaliacao Otimista { get; set; }
-        public Avaliacao Mercado { get; set; }
-        public Avaliacao Otimo { get; set; }
+        public Avaliacao ?Otimista { get; set; }
+        public Avaliacao ?Mercado { get; set; }
+        public Avaliacao ?Otimo { get; set; }
         public decimal AvaliacaoBase { get; set; }
+        public Presentation()
+        {
+            
+        }
+        public Presentation(List<CriacaoInfoLine> LinesList, string _Corretor, string _Cliente, string _Titulo) 
+        {
+            foreach (var item in LinesList)
+            {
+                Imoveis.Add(new Imovel()
+                {
+                    Metragem = int.TryParse(item.Metragem.Text, out var metragem) ? metragem : 0,
+                    Valor = decimal.TryParse(item.ValorTxtBox.Text, out var valor) ? valor : 0,
+                    NumeroBanheiros = int.TryParse(item.BanheirosTxtBox.Text, out var numBathromm) ? numBathromm : 0,
+                    Garagem = int.TryParse(item.GaragemTxtBox.Text, out var garagem) ? garagem : 0,
+                    NumeroDormitorios = int.TryParse(item.DormTxtBox.Text, out var numDorm) ? numDorm : 0,
+                    LinkImovel = !string.IsNullOrEmpty(item.LinkImovelTxtBox.Text) ? item.LinkImovelTxtBox.Text : "",
+                    ImagemImovelPath = item.NewPictureBox.ImageLocation
+                });
+            }
 
-        public Presentation(){}
+                Corretor = _Corretor;
+                Cliente = _Cliente;
+                Titulo = _Titulo;
+
+            CalculateBasicAvaliation();
+        }
 
         public void CalculateBasicAvaliation()
         {
@@ -26,18 +52,4 @@
             AvaliacaoBase = valor / Imoveis.Count;
         }
     }
-
-    public class Avaliacao()
-    {
-        public decimal ValorAvaliacao { get; private set; }
-        public decimal percentual { set; get; }
-
-        public void CalcularAvaliacao(decimal valorBase)
-        {
-            var PercentualEmPorcentagem = percentual / 100;
-            var parte = valorBase * PercentualEmPorcentagem;
-            ValorAvaliacao = parte + valorBase;
-            
-        }
     }
-}

@@ -10,7 +10,6 @@ namespace ReportImoveis
     public partial class Criacao : Form
     {
         private int NumeroDeImoveis = 0;
-        private List<Imovel> ListaDeImoveis = new List<Imovel>();
         private List<CriacaoInfoLine> CriacaoInfoLinesList = new List<CriacaoInfoLine>();
         private int Deslocamento = 0;
         private Presentation Apresentacao;
@@ -42,53 +41,34 @@ namespace ReportImoveis
         {
             NumeroDeImoveis--;
         }
-
         private void SalvarDados_Click(object sender, EventArgs e)
         {
-            if (Apresentacao is null)
+            if (string.IsNullOrEmpty(NomeEstudo.Text))
             {
-                Apresentacao = CriarApresentacaoData();
+                MessageBox.Show("Por favor, insira um nome para a apresentação", "Ops, Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
 
-            //var serializado = JsonConvert.SerializeObject(Apresentacao);
-            //MessageBox.Show("Texto inserido" + serializado);
+           // if (Apresentacao is null)
+           // {
+                Apresentacao = new Presentation(CriacaoInfoLinesList, 
+                    CorretorTextBox.Text, 
+                    NomeClienteTextBox.Text,
+                    NomeEstudo.Text);
+            //}
+
             SaveData(Apresentacao);
         }
 
-        private Presentation CriarApresentacaoData()
+        /*private void AtualizaApresentacao(List<CriacaoInfoLine> LinesList, string )
         {
-            foreach (var item in CriacaoInfoLinesList)
-            {
-                ListaDeImoveis.Add(new Imovel()
-                {
-                    Metragem = !int.TryParse(item.Metragem.Text, out var metragem) ? metragem : 0,
-                    Valor = !decimal.TryParse(item.ValorTxtBox.Text, out var valor) ? valor : 0,
-                    NumeroBanheiros = !int.TryParse(item.BanheirosTxtBox.Text, out var numBathromm) ? numBathromm : 0,
-                    Garagem = !int.TryParse(item.GaragemTxtBox.Text, out var garagem) ? garagem : 0,
-                    NumeroDormitorios = !int.TryParse(item.DormTxtBox.Text, out var numDorm) ? numDorm : 0,
-                    LinkImovel = !string.IsNullOrEmpty(item.LinkImovelTxtBox.Text) ? item.LinkImovelTxtBox.Text : "",
-                    ImagemImovelPath = item.NewPictureBox.ImageLocation
-                });
-            }
 
-
-            var apresentacao = new Presentation()
-            {
-                Imoveis = ListaDeImoveis,
-                Corretor = CorretorTextBox.Text,
-                Cliente = NomeClienteTextBox.Text,
-                Titulo = NomeEstudo.Text
-            };
-
-            apresentacao.CalculateBasicAvaliation();
-
-            return apresentacao;
-        }
+        }*/
 
         private void SaveData(Presentation data)
         {
             using FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-                 
+            folderBrowserDialog.Description = "Selecione a pasta para salvar a apresentação";
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK 
                 && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
             {
@@ -103,9 +83,12 @@ namespace ReportImoveis
                 {
                     var ImageName = Path.GetFileNameWithoutExtension(item.ImagemImovelPath);
                     var ImagemPath = Path.Combine(DirectoryPath, ImageName + ".jpg");
-                    MessageBox.Show("Complete image Path: " + ImagemPath);
-                    var imagem = Image.FromFile(item.ImagemImovelPath);
-                    imagem.Save(ImagemPath);
+                    if (!ImagemPath.Equals(item.ImagemImovelPath))
+                    {
+                        var imagem = Image.FromFile(item.ImagemImovelPath);
+                        imagem.Save(ImagemPath);
+                        item.ImagemImovelPath = ImagemPath;
+                    }
                 }
 
                 var arquivoDeApresentacao = JsonConvert.SerializeObject(data);
@@ -179,7 +162,6 @@ namespace ReportImoveis
             return pictureBox;
         }
 
-
         private void PictureBox_Click(object sender, EventArgs e)
         {
             PictureBox SelectedPictureBox = (PictureBox)sender;
@@ -191,6 +173,7 @@ namespace ReportImoveis
                 SelectedPictureBox.Image = imageForPictureBox;
                 SelectedPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 SelectedPictureBox.ImageLocation = _OpenfileDialog.FileName;
+                
             }
         }
 
@@ -220,7 +203,10 @@ namespace ReportImoveis
         {
             if (Apresentacao is null)
             {
-                Apresentacao = CriarApresentacaoData();
+                Apresentacao = new Presentation(CriacaoInfoLinesList,
+                    CorretorTextBox.Text,
+                    NomeClienteTextBox.Text,
+                    NomeEstudo.Text);
             }
 
             Apresentacao.CalculateBasicAvaliation();
@@ -299,6 +285,7 @@ namespace ReportImoveis
                 DormitoriosTextBox.Text = apresentacao.Imoveis[i].NumeroDormitorios.ToString();
                 LinkImovelTxt.Text = apresentacao.Imoveis[i].LinkImovel;
                 NewPictureBox.ImageLocation = apresentacao.Imoveis[i].ImagemImovelPath;
+                NewPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 CriacaoInfoLine newInfo = new CriacaoInfoLine()
                 {
@@ -334,6 +321,7 @@ namespace ReportImoveis
             item.DormTxtBox.Text = imovel.NumeroDormitorios.ToString();
             item.LinkImovelTxtBox.Text = imovel.LinkImovel;
             item.NewPictureBox.ImageLocation = imovel.ImagemImovelPath;
+            item.NewPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void ClearForm()
@@ -351,7 +339,6 @@ namespace ReportImoveis
                 Controls.Remove(CriacaoInfoLinesList[i].NewPictureBox);
                 CriacaoInfoLinesList.RemoveAt(i);
             }
-            ListaDeImoveis.Clear();
             NumeroDeImoveis = 0;
             Deslocamento = 0;
         }
