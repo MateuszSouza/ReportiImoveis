@@ -7,10 +7,10 @@ using ReportImoveis.Core.DinamicDesigner;
 
 namespace ReportImoveis
 {
-    public partial class Form1 : Form
+    public partial class ReportImoveisFront : Form
     {
         private CriacaoInfoLine CriacaoInfoLine = new CriacaoInfoLine();
-        public Form1()
+        public ReportImoveisFront()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -30,13 +30,13 @@ namespace ReportImoveis
         {
             Criacao criacao = new Criacao();
             criacao.ShowDialog();
-
         }
 
-        private void BtnMudar(object sender, EventArgs e)
+        private void Apresentar_OnClick(object sender, EventArgs e)
         {
-            var point = this.Location.ToString();
-            label1.Text = "OK";
+            AprensetacaoForm aprensetacaoForm = new AprensetacaoForm();
+            aprensetacaoForm.WindowState = FormWindowState.Maximized;
+            aprensetacaoForm.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)

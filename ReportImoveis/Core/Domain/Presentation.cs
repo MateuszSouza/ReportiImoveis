@@ -8,7 +8,7 @@ namespace ReportImoveis.Core.Domain
         public List<Imovel> Imoveis = new List<Imovel>();
         public string Titulo { get; set; }
         public string Cliente { get; set; }
-        public string Corretor { get; set; }
+        public Corretor Corretor { get; set; }
         public Avaliacao ?Otimista { get; set; }
         public Avaliacao ?Mercado { get; set; }
         public Avaliacao ?Otimo { get; set; }
@@ -17,7 +17,7 @@ namespace ReportImoveis.Core.Domain
         {
             
         }
-        public Presentation(List<CriacaoInfoLine> LinesList, string _Corretor, string _Cliente, string _Titulo) 
+        public Presentation(List<CriacaoInfoLine> LinesList, Corretor _Corretor, string _Cliente, string _Titulo) 
         {
             foreach (var item in LinesList)
             {
