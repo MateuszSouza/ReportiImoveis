@@ -1,15 +1,12 @@
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Windows.Forms;
-using System.Drawing;
-using Newtonsoft.Json;
-using ReportImoveis.Core.Domain;
 using ReportImoveis.Core.DinamicDesigner;
+using Microsoft.VisualBasic;
 
 namespace ReportImoveis
 {
     public partial class ReportImoveisFront : Form
     {
         private CriacaoInfoLine CriacaoInfoLine = new CriacaoInfoLine();
+
         public ReportImoveisFront()
         {
             InitializeComponent();
@@ -18,12 +15,10 @@ namespace ReportImoveis
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void BtnNew(object sender, EventArgs e)
@@ -51,6 +46,12 @@ namespace ReportImoveis
             label.AutoSize = true;
 
             Controls.Add(label);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var Password = Interaction.InputBox("Message", "Title", "information in textbox", -1, -1);
+            MessageBox.Show("meu teste " + Password, "?", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
         }
     }
 }

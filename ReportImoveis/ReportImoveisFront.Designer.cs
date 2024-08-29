@@ -65,14 +65,15 @@
             // 
             // button1
             // 
-            button1.Location = new Point(56, 203);
+            button1.Location = new Point(56, 154);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 9;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // Form1
+            // ReportImoveisFront
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -82,7 +83,7 @@
             Controls.Add(Criar);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Name = "Form1";
+            Name = "ReportImoveisFront";
             Text = "ReviseImoveis";
             Load += Form1_Load;
             ResumeLayout(false);

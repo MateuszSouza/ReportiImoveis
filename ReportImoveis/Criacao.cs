@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.VisualBasic;
+using Newtonsoft.Json;
 using ReportImoveis.Core.DinamicDesigner;
 using ReportImoveis.Core.Domain;
 using ReportImoveis.Repository;
+using System.Security.Cryptography.Xml;
 using System.Windows.Forms;
 
 namespace ReportImoveis
@@ -14,6 +16,8 @@ namespace ReportImoveis
         private Presentation Apresentacao;
         private DataControl dataControl;
         private DinamicDesinger DinamicDesinger = new DinamicDesinger();
+        private Size size = new Size(100, 27);
+
 
         public Criacao()
         {
@@ -36,14 +40,10 @@ namespace ReportImoveis
         {
         }
 
-        private void IncrementoNumeroImoveis()
+        private int IncrementoNumeroImoveis()
         {
             NumeroDeImoveis++;
-        }
-
-        private void DecrementarNumerDeImoveis()
-        {
-            NumeroDeImoveis--;
+            return NumeroDeImoveis * 80;
         }
 
         private void SalvarDados_Click(object sender, EventArgs e)
@@ -54,57 +54,36 @@ namespace ReportImoveis
                 return;
             }
 
-            Apresentacao = new Presentation(
-                CriacaoInfoLinesList,
-                new Corretor()
-                {
-                    Name = CorretorTextBox.Text,
-                    ImageLocation = CorretorPicBox.ImageLocation
-                },
-                NomeClienteTextBox.Text,
-                NomeEstudo.Text);
+            CriarApresentacao();
 
             dataControl.SaveData(Apresentacao);
         }
 
         private void AddImovel_Click(object sender, EventArgs e)
         {
-            IncrementoNumeroImoveis();
-            Deslocamento = NumeroDeImoveis * 80;
-            var size = new Size(100, 27);
+            Deslocamento = IncrementoNumeroImoveis();
 
-            Label label = DinamicDesinger.CreateLabel($"imóvel {NumeroDeImoveis + 1}", ImovelLabel.Location.X, ImovelLabel.Location.Y + Deslocamento);
-            TextBox MetragemTextBox = DinamicDesinger.CreateTextBox(MetragemTxtBox1.Location.X, MetragemTxtBox1.Location.Y + Deslocamento, size);
-            TextBox ValorTextBox = DinamicDesinger.CreateTextBox(ValorTxtBox1.Location.X, ValorTxtBox1.Location.Y + Deslocamento, size);
-            TextBox BanheirosTextBox = DinamicDesinger.CreateTextBox(BanheirosTxtBox.Location.X, BanheirosTxtBox.Location.Y + Deslocamento, size);
-            TextBox GaragemTextBox = DinamicDesinger.CreateTextBox(GaragemTxtBox.Location.X, GaragemTxtBox.Location.Y + Deslocamento, size);
-            TextBox DormitoriosTextBox = DinamicDesinger.CreateTextBox(DormTxtBox.Location.X, DormTxtBox.Location.Y + Deslocamento, size);
-            TextBox LinkImovelTxt = DinamicDesinger.CreateTextBox(LinkImovelTxtBox.Location.X, LinkImovelTxtBox.Location.Y + Deslocamento, size);
-            PictureBox NewPictureBox = DinamicDesinger.CreatePictureBox(ImovelPictureBox.Location.X, ImovelPictureBox.Location.Y + Deslocamento);
-            NewPictureBox.Click += PictureBox_Click;
+            CriacaoInfoLine newInfo = DinamicDesinger.CreateConjuntoInfoLine(NumeroDeImoveis,Deslocamento, size,
+            ImovelLabel,
+            MetragemTxtBox1,
+            ValorTxtBox1,
+            BanheirosTxtBox,
+            GaragemTxtBox,
+            DormTxtBox,
+            LinkImovelTxtBox,
+            ImovelPictureBox,
+            PictureBox_Click);
 
-            CriacaoInfoLine NewInfo = new CriacaoInfoLine()
-            {
-                Label = label,
-                ValorTxtBox = ValorTextBox,
-                BanheirosTxtBox = BanheirosTextBox,
-                GaragemTxtBox = GaragemTextBox,
-                DormTxtBox = DormitoriosTextBox,
-                Metragem = MetragemTextBox,
-                LinkImovelTxtBox = LinkImovelTxt,
-                NewPictureBox = NewPictureBox,
-            };
+            CriacaoInfoLinesList.Add(newInfo);
 
-            CriacaoInfoLinesList.Add(NewInfo);
-
-            Controls.Add(label);
-            Controls.Add(MetragemTextBox);
-            Controls.Add(ValorTextBox);
-            Controls.Add(BanheirosTextBox);
-            Controls.Add(GaragemTextBox);
-            Controls.Add(DormitoriosTextBox);
-            Controls.Add(LinkImovelTxt);
-            Controls.Add(NewPictureBox);
+            Controls.Add(newInfo.Label);
+            Controls.Add(newInfo.Metragem);
+            Controls.Add(newInfo.ValorTxtBox);
+            Controls.Add(newInfo.BanheirosTxtBox);
+            Controls.Add(newInfo.GaragemTxtBox);
+            Controls.Add(newInfo.DormTxtBox);
+            Controls.Add(newInfo.LinkImovelTxtBox);
+            Controls.Add(newInfo.NewPictureBox);
         }
 
         private void PictureBox_Click(object sender, EventArgs e)
@@ -125,56 +104,105 @@ namespace ReportImoveis
         {
             if (CriacaoInfoLinesList.Count <= 1)
             {
+                MessageBox.Show("Não pode remover o imóvel um.", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            DecrementarNumerDeImoveis();
+            var Number = Interaction.InputBox("Escolha pelo numero qual imovel deseja retirar", "Remoção", "2", -1, -1);
+            if (int.TryParse(Number, out int NumeroSelecionado) && NumeroSelecionado < CriacaoInfoLinesList.Count)
+            {
+                if (NumeroSelecionado == 1)
+                {
+                    RemoverPrimeiro();
+                }
+                else
+                {
+                    RemoverOutros(NumeroSelecionado);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Numero de imóvel selecionado inávido", "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
 
-            var ultimo = CriacaoInfoLinesList.Last();
+        private void RemoverPrimeiro()
+        {
+            var second = CriacaoInfoLinesList[1];
+            RemoverItem(second);
+            CriacaoInfoLinesList.Remove(second); ;
+            CriacaoInfoLinesList.First().Metragem.Text = second.Metragem.Text;
+            CriacaoInfoLinesList.First().ValorTxtBox.Text = second.ValorTxtBox.Text;
+            CriacaoInfoLinesList.First().BanheirosTxtBox.Text = second.BanheirosTxtBox.Text;
+            CriacaoInfoLinesList.First().GaragemTxtBox.Text = second.GaragemTxtBox.Text;
+            CriacaoInfoLinesList.First().DormTxtBox.Text = second.DormTxtBox.Text;
+            CriacaoInfoLinesList.First().LinkImovelTxtBox.Text = second.LinkImovelTxtBox.Text;
+            CriacaoInfoLinesList.First().NewPictureBox.ImageLocation = second.NewPictureBox.ImageLocation;
+            CriacaoInfoLinesList.First().NewPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            Controls.Remove(ultimo.Label);
-            Controls.Remove(ultimo.Metragem);
-            Controls.Remove(ultimo.ValorTxtBox);
-            Controls.Remove(ultimo.BanheirosTxtBox);
-            Controls.Remove(ultimo.GaragemTxtBox);
-            Controls.Remove(ultimo.DormTxtBox);
-            Controls.Remove(ultimo.LinkImovelTxtBox);
-            Controls.Remove(ultimo.NewPictureBox);
+            CriarApresentacao();
 
-            CriacaoInfoLinesList.Remove(ultimo);
+            PopulateForm(Apresentacao);
+        }
+        private void CriarApresentacao()
+        {
+            Apresentacao = new Presentation(
+                CriacaoInfoLinesList,
+                new Corretor()
+                {
+                    Name = CorretorTextBox.Text,
+                    ImageLocation = CorretorPicBox.ImageLocation
+                },
+                NomeClienteTextBox.Text,
+                NomeEstudo.Text);
+        }
+        private void RemoverOutros(int selecionado)
+        {
+            var linhaSelecionada = CriacaoInfoLinesList[selecionado - 1];
+            CriacaoInfoLinesList.Remove(linhaSelecionada);
+            RemoverItem(linhaSelecionada);
+            CriarApresentacao();
+            PopulateForm(Apresentacao);
+        }
+
+        private void RemoverItem(CriacaoInfoLine item)
+        {
+            Controls.Remove(item.Label);
+            Controls.Remove(item.Metragem);
+            Controls.Remove(item.ValorTxtBox);
+            Controls.Remove(item.BanheirosTxtBox);
+            Controls.Remove(item.GaragemTxtBox);
+            Controls.Remove(item.DormTxtBox);
+            Controls.Remove(item.LinkImovelTxtBox);
+            Controls.Remove(item.NewPictureBox);
         }
 
         private void CalcularBtn_Click(object sender, EventArgs e)
         {
-
-            Apresentacao = new Presentation(CriacaoInfoLinesList,
-                new Corretor()
-                {
-                    Name = CorretorTextBox.Text,
-                    ImageLocation = CorretorPicBox.ImageLocation,
-                },
-                NomeClienteTextBox.Text,
-                NomeEstudo.Text);
-
+            CriarApresentacao();
 
             Apresentacao.CalculateBasicAvaliation();
 
             Apresentacao.Otimista = new Avaliacao()
             {
                 percentual = OtimistaNumUpDown.Value,
+                Mostrar = checkBoxOtimista.Checked,
             };
             Apresentacao.Otimista.CalcularAvaliacao(Apresentacao.AvaliacaoBase);
             OtimistaTxtBox.Text = Apresentacao.Otimista.ValorAvaliacao.ToString();
 
             Apresentacao.Otimo = new Avaliacao()
             {
-                percentual = OtimoNumUpDown.Value
+                percentual = OtimoNumUpDown.Value,
+                Mostrar=checkBoxOtimo.Checked,
             };
             Apresentacao.Otimo.CalcularAvaliacao(Apresentacao.AvaliacaoBase);
             OtimoTxtBox.Text = Apresentacao.Otimo.ValorAvaliacao.ToString();
 
             Apresentacao.Mercado = new Avaliacao()
             {
-                percentual = MercadoNumUpDown.Value
+                percentual = MercadoNumUpDown.Value,
+                Mostrar = checkBoxMercado.Checked
             };
             Apresentacao.Mercado.CalcularAvaliacao(Apresentacao.AvaliacaoBase);
             MercadoTxtBox.Text = Apresentacao.Mercado.ValorAvaliacao.ToString();
@@ -210,53 +238,38 @@ namespace ReportImoveis
 
             for (int i = 1; i < apresentacao.Imoveis.Count; i++)
             {
-                IncrementoNumeroImoveis();
-                Deslocamento = NumeroDeImoveis * 80;
-                var size = new Size(100, 27);
+                Deslocamento = IncrementoNumeroImoveis();
 
-                Label label = DinamicDesinger.CreateLabel("imóvel " + NumeroDeImoveis, ImovelLabel.Location.X, ImovelLabel.Location.Y + Deslocamento);
-                TextBox MetragemTextBox = DinamicDesinger.CreateTextBox(MetragemTxtBox1.Location.X, MetragemTxtBox1.Location.Y + Deslocamento, size);
-                TextBox ValorTextBox = DinamicDesinger.CreateTextBox(ValorTxtBox1.Location.X, ValorTxtBox1.Location.Y + Deslocamento, size);
-                TextBox BanheirosTextBox = DinamicDesinger.CreateTextBox(BanheirosTxtBox.Location.X, BanheirosTxtBox.Location.Y + Deslocamento, size);
-                TextBox GaragemTextBox = DinamicDesinger.CreateTextBox(GaragemTxtBox.Location.X, GaragemTxtBox.Location.Y + Deslocamento, size);
-                TextBox DormitoriosTextBox = DinamicDesinger.CreateTextBox(DormTxtBox.Location.X, DormTxtBox.Location.Y + Deslocamento, size);
-                TextBox LinkImovelTxt = DinamicDesinger.CreateTextBox(LinkImovelTxtBox.Location.X, LinkImovelTxtBox.Location.Y + Deslocamento, size);
-                PictureBox NewPictureBox = DinamicDesinger.CreatePictureBox(ImovelPictureBox.Location.X, ImovelPictureBox.Location.Y + Deslocamento);
-                NewPictureBox.Click += PictureBox_Click;
+                CriacaoInfoLine newInfo = DinamicDesinger.CreateConjuntoInfoLine(NumeroDeImoveis, Deslocamento, size,
+                ImovelLabel,
+                MetragemTxtBox1,
+                ValorTxtBox1,
+                BanheirosTxtBox,
+                GaragemTxtBox,
+                DormTxtBox,
+                LinkImovelTxtBox,
+                ImovelPictureBox,
+                PictureBox_Click);
 
                 // Preenche os controles com os dados do imóvel
-                MetragemTextBox.Text = apresentacao.Imoveis[i].Metragem.ToString();
-                ValorTextBox.Text = apresentacao.Imoveis[i].Valor.ToString();
-                BanheirosTextBox.Text = apresentacao.Imoveis[i].NumeroBanheiros.ToString();
-                GaragemTextBox.Text = apresentacao.Imoveis[i].Garagem.ToString();
-                DormitoriosTextBox.Text = apresentacao.Imoveis[i].NumeroDormitorios.ToString();
-                LinkImovelTxt.Text = apresentacao.Imoveis[i].LinkImovel;
-                NewPictureBox.ImageLocation = apresentacao.Imoveis[i].ImagemImovelPath;
-                NewPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-
-
-                CriacaoInfoLine newInfo = new CriacaoInfoLine()
-                {
-                    Label = label,
-                    ValorTxtBox = ValorTextBox,
-                    BanheirosTxtBox = BanheirosTextBox,
-                    GaragemTxtBox = GaragemTextBox,
-                    DormTxtBox = DormitoriosTextBox,
-                    Metragem = MetragemTextBox,
-                    LinkImovelTxtBox = LinkImovelTxt,
-                    NewPictureBox = NewPictureBox,
-                };
-
+                newInfo.Metragem.Text = apresentacao.Imoveis[i].Metragem.ToString();
+                newInfo.ValorTxtBox.Text = apresentacao.Imoveis[i].Valor.ToString();
+                newInfo.BanheirosTxtBox.Text = apresentacao.Imoveis[i].NumeroBanheiros.ToString();
+                newInfo.GaragemTxtBox.Text = apresentacao.Imoveis[i].Garagem.ToString();
+                newInfo.DormTxtBox.Text = apresentacao.Imoveis[i].NumeroDormitorios.ToString();
+                newInfo.LinkImovelTxtBox.Text = apresentacao.Imoveis[i].LinkImovel;
+                newInfo.NewPictureBox.ImageLocation = apresentacao.Imoveis[i].ImagemImovelPath;
+                newInfo.NewPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
                 CriacaoInfoLinesList.Add(newInfo);
 
-                Controls.Add(label);
-                Controls.Add(MetragemTextBox);
-                Controls.Add(ValorTextBox);
-                Controls.Add(BanheirosTextBox);
-                Controls.Add(GaragemTextBox);
-                Controls.Add(DormitoriosTextBox);
-                Controls.Add(LinkImovelTxt);
-                Controls.Add(NewPictureBox);
+                Controls.Add(newInfo.Label);
+                Controls.Add(newInfo.Metragem);
+                Controls.Add(newInfo.ValorTxtBox);
+                Controls.Add(newInfo.BanheirosTxtBox);
+                Controls.Add(newInfo.GaragemTxtBox);
+                Controls.Add(newInfo.DormTxtBox);
+                Controls.Add(newInfo.LinkImovelTxtBox);
+                Controls.Add(newInfo.NewPictureBox);
             }
             CorretorPicBox.ImageLocation = apresentacao.Corretor.ImageLocation;
             CorretorPicBox.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -279,14 +292,7 @@ namespace ReportImoveis
             // Remove todos os controles criados dinamicamente, preservando o item na posição 0
             for (int i = CriacaoInfoLinesList.Count - 1; i > 0; i--)
             {
-                Controls.Remove(CriacaoInfoLinesList[i].Label);
-                Controls.Remove(CriacaoInfoLinesList[i].Metragem);
-                Controls.Remove(CriacaoInfoLinesList[i].ValorTxtBox);
-                Controls.Remove(CriacaoInfoLinesList[i].BanheirosTxtBox);
-                Controls.Remove(CriacaoInfoLinesList[i].GaragemTxtBox);
-                Controls.Remove(CriacaoInfoLinesList[i].DormTxtBox);
-                Controls.Remove(CriacaoInfoLinesList[i].LinkImovelTxtBox);
-                Controls.Remove(CriacaoInfoLinesList[i].NewPictureBox);
+                RemoverItem(CriacaoInfoLinesList[i]);
                 CriacaoInfoLinesList.RemoveAt(i);
             }
             NumeroDeImoveis = 0;

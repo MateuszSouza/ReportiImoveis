@@ -4,6 +4,7 @@
     {
         public decimal ValorAvaliacao { get; private set; }
         public decimal percentual { set; get; }
+        public bool Mostrar {  get; set; }
 
         public void CalcularAvaliacao(decimal valorBase)
         {

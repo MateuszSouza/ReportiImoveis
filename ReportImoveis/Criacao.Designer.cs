@@ -67,6 +67,10 @@
             ImovelLabel = new Label();
             BanheirosTxtBox = new TextBox();
             ImovelPictureBox = new PictureBox();
+            checkBoxOtimista = new CheckBox();
+            checkBoxMercado = new CheckBox();
+            checkBoxOtimo = new CheckBox();
+            label3 = new Label();
             ((System.ComponentModel.ISupportInitialize)OtimistaNumUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)MercadoNumUpDown).BeginInit();
             ((System.ComponentModel.ISupportInitialize)OtimoNumUpDown).BeginInit();
@@ -422,12 +426,53 @@
             ImovelPictureBox.TabStop = false;
             ImovelPictureBox.Click += PictureBox_Click;
             // 
+            // checkBoxOtimista
+            // 
+            checkBoxOtimista.AutoSize = true;
+            checkBoxOtimista.Location = new Point(922, 290);
+            checkBoxOtimista.Name = "checkBoxOtimista";
+            checkBoxOtimista.Size = new Size(18, 17);
+            checkBoxOtimista.TabIndex = 52;
+            checkBoxOtimista.TextAlign = ContentAlignment.BottomRight;
+            checkBoxOtimista.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxMercado
+            // 
+            checkBoxMercado.AutoSize = true;
+            checkBoxMercado.Location = new Point(922, 365);
+            checkBoxMercado.Name = "checkBoxMercado";
+            checkBoxMercado.Size = new Size(18, 17);
+            checkBoxMercado.TabIndex = 53;
+            checkBoxMercado.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxOtimo
+            // 
+            checkBoxOtimo.AutoSize = true;
+            checkBoxOtimo.Location = new Point(922, 437);
+            checkBoxOtimo.Name = "checkBoxOtimo";
+            checkBoxOtimo.Size = new Size(18, 17);
+            checkBoxOtimo.TabIndex = 54;
+            checkBoxOtimo.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(880, 257);
+            label3.Name = "label3";
+            label3.Size = new Size(60, 20);
+            label3.TabIndex = 55;
+            label3.Text = "Mostrar";
+            // 
             // Criacao
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
             ClientSize = new Size(1196, 712);
+            Controls.Add(label3);
+            Controls.Add(checkBoxOtimo);
+            Controls.Add(checkBoxMercado);
+            Controls.Add(checkBoxOtimista);
             Controls.Add(ImovelPictureBox);
             Controls.Add(BanheirosTxtBox);
             Controls.Add(FotoCorretor);
@@ -523,5 +568,9 @@
         private Label ImovelLabel;
         private TextBox BanheirosTxtBox;
         private PictureBox ImovelPictureBox;
+        private CheckBox checkBoxOtimista;
+        private CheckBox checkBoxMercado;
+        private CheckBox checkBoxOtimo;
+        private Label label3;
     }
 }
