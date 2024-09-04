@@ -1,10 +1,7 @@
 ﻿using Microsoft.VisualBasic;
-using Newtonsoft.Json;
 using ReportImoveis.Core.DinamicDesigner;
 using ReportImoveis.Core.Domain;
 using ReportImoveis.Repository;
-using System.Security.Cryptography.Xml;
-using System.Windows.Forms;
 
 namespace ReportImoveis
 {
@@ -17,7 +14,6 @@ namespace ReportImoveis
         private DataControl dataControl;
         private DinamicDesinger DinamicDesinger = new DinamicDesinger();
         private Size size = new Size(100, 27);
-
 
         public Criacao()
         {
@@ -54,7 +50,7 @@ namespace ReportImoveis
                 return;
             }
 
-            CriarApresentacao();
+            CalcularBtn_Click(null, null);
 
             dataControl.SaveData(Apresentacao);
         }
@@ -63,7 +59,7 @@ namespace ReportImoveis
         {
             Deslocamento = IncrementoNumeroImoveis();
 
-            CriacaoInfoLine newInfo = DinamicDesinger.CreateConjuntoInfoLine(NumeroDeImoveis,Deslocamento, size,
+            CriacaoInfoLine newInfo = DinamicDesinger.CreateConjuntoInfoLine(NumeroDeImoveis, Deslocamento, size,
             ImovelLabel,
             MetragemTxtBox1,
             ValorTxtBox1,
@@ -140,13 +136,14 @@ namespace ReportImoveis
             CriacaoInfoLinesList.First().NewPictureBox.ImageLocation = second.NewPictureBox.ImageLocation;
             CriacaoInfoLinesList.First().NewPictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
 
-            CriarApresentacao();
+            Apresentacao = CriarApresentacao();
 
             PopulateForm(Apresentacao);
         }
-        private void CriarApresentacao()
+
+        private Presentation CriarApresentacao()
         {
-            Apresentacao = new Presentation(
+            var _apresentacao = new Presentation(
                 CriacaoInfoLinesList,
                 new Corretor()
                 {
@@ -155,13 +152,15 @@ namespace ReportImoveis
                 },
                 NomeClienteTextBox.Text,
                 NomeEstudo.Text);
+            return _apresentacao;
         }
+
         private void RemoverOutros(int selecionado)
         {
             var linhaSelecionada = CriacaoInfoLinesList[selecionado - 1];
             CriacaoInfoLinesList.Remove(linhaSelecionada);
             RemoverItem(linhaSelecionada);
-            CriarApresentacao();
+            Apresentacao = CriarApresentacao();
             PopulateForm(Apresentacao);
         }
 
@@ -177,40 +176,42 @@ namespace ReportImoveis
             Controls.Remove(item.NewPictureBox);
         }
 
-        private void CalcularBtn_Click(object sender, EventArgs e)
+        private void CalcularBtn_Click(object? sender, EventArgs? e)
         {
-            CriarApresentacao();
+            Apresentacao = CriarApresentacao();
 
             Apresentacao.CalculateBasicAvaliation();
 
             Apresentacao.Otimista = new Avaliacao()
             {
-                percentual = OtimistaNumUpDown.Value,
+                percentual = (float)OtimistaNumUpDown.Value,
                 Mostrar = checkBoxOtimista.Checked,
             };
-            Apresentacao.Otimista.CalcularAvaliacao(Apresentacao.AvaliacaoBase);
-            OtimistaTxtBox.Text = Apresentacao.Otimista.ValorAvaliacao.ToString();
 
             Apresentacao.Otimo = new Avaliacao()
             {
-                percentual = OtimoNumUpDown.Value,
-                Mostrar=checkBoxOtimo.Checked,
+                percentual = (float)OtimoNumUpDown.Value,
+                Mostrar = checkBoxOtimo.Checked,
             };
-            Apresentacao.Otimo.CalcularAvaliacao(Apresentacao.AvaliacaoBase);
-            OtimoTxtBox.Text = Apresentacao.Otimo.ValorAvaliacao.ToString();
 
             Apresentacao.Mercado = new Avaliacao()
             {
-                percentual = MercadoNumUpDown.Value,
+                percentual = (float)MercadoNumUpDown.Value,
                 Mostrar = checkBoxMercado.Checked
             };
-            Apresentacao.Mercado.CalcularAvaliacao(Apresentacao.AvaliacaoBase);
-            MercadoTxtBox.Text = Apresentacao.Mercado.ValorAvaliacao.ToString();
+            
+            Apresentacao.CalculateAllAvaliation();
+            
+            OtimistaTxtBox.Text = Apresentacao.Otimista.ValorAvaliacao.ToString();
+            OtimoTxtBox.Text    = Apresentacao.Otimo.ValorAvaliacao.ToString();
+            MercadoTxtBox.Text  = Apresentacao.Mercado.ValorAvaliacao.ToString();
         }
 
         private void CarregarBtn_Click(object sender, EventArgs e)
         {
             var apresentacao = dataControl.Carregar();
+            apresentacao.CalculateAllAvaliation();
+
             if (apresentacao is not null)
             {
                 PopulateForm(apresentacao);
@@ -273,6 +274,12 @@ namespace ReportImoveis
             }
             CorretorPicBox.ImageLocation = apresentacao.Corretor.ImageLocation;
             CorretorPicBox.SizeMode = PictureBoxSizeMode.StretchImage;
+            checkBoxOtimista.Checked = apresentacao.Otimista.Mostrar;
+            checkBoxMercado.Checked = apresentacao.Mercado.Mostrar;
+            checkBoxOtimo.Checked = apresentacao.Otimo.Mostrar;
+            OtimistaTxtBox.Text = apresentacao.Otimista.ValorAvaliacao.ToString();
+            MercadoTxtBox.Text  = apresentacao.Mercado.ValorAvaliacao.ToString();
+            OtimoTxtBox.Text = apresentacao.Otimo.ValorAvaliacao.ToString();
         }
 
         private void AtualizarItem(CriacaoInfoLine item, Imovel imovel)
@@ -312,6 +319,10 @@ namespace ReportImoveis
         private void OtimistaNumUpDown_ValueChanged(object sender, EventArgs e)
         {
             CalcularBtn_Click(sender, e);
+        }
+
+        private void checkBoxOtimista_CheckedChanged(object sender, EventArgs e)
+        {
         }
     }
 }

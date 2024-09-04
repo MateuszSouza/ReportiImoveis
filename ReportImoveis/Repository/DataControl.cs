@@ -64,7 +64,8 @@ namespace ReportImoveis.Repository
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 string data = File.ReadAllText(openFileDialog1.FileName);
-                return JsonConvert.DeserializeObject<Presentation>(data);
+                var _apresentacao = JsonConvert.DeserializeObject<Presentation>(data);
+                return _apresentacao;
             }
             return null;
         }

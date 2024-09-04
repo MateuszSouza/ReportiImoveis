@@ -2,11 +2,14 @@
 {
     public class Avaliacao
     {
-        public decimal ValorAvaliacao { get; private set; }
-        public decimal percentual { set; get; }
+        public float ValorAvaliacao { get; private set; }
+        public float percentual { set; get; }
         public bool Mostrar {  get; set; }
-
-        public void CalcularAvaliacao(decimal valorBase)
+        public Avaliacao()
+        {
+            
+        }
+        public void CalcularAvaliacao(float valorBase)
         {
             var PercentualEmPorcentagem = percentual / 100;
             var parte = valorBase * PercentualEmPorcentagem;

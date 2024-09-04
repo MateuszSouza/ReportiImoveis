@@ -2,7 +2,7 @@
 {
     public class Imovel
     {
-        public decimal Valor { get; set; }
+        public float Valor { get; set; }
         public int Metragem { get; set; }
         public int NumeroBanheiros { get; set; }
         public int Garagem { get; set; }

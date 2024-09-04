@@ -435,6 +435,7 @@
             checkBoxOtimista.TabIndex = 52;
             checkBoxOtimista.TextAlign = ContentAlignment.BottomRight;
             checkBoxOtimista.UseVisualStyleBackColor = true;
+            checkBoxOtimista.CheckedChanged += checkBoxOtimista_CheckedChanged;
             // 
             // checkBoxMercado
             // 
