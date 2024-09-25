@@ -31,7 +31,6 @@
             Criar = new Button();
             ApresentarBtn = new Button();
             menuStrip1 = new MenuStrip();
-            button1 = new Button();
             SuspendLayout();
             // 
             // Criar
@@ -48,7 +47,7 @@
             // 
             ApresentarBtn.Location = new Point(56, 90);
             ApresentarBtn.Name = "ApresentarBtn";
-            ApresentarBtn.Size = new Size(94, 29);
+            ApresentarBtn.Size = new Size(173, 29);
             ApresentarBtn.TabIndex = 2;
             ApresentarBtn.Text = "Apresentar";
             ApresentarBtn.UseVisualStyleBackColor = true;
@@ -59,26 +58,15 @@
             menuStrip1.ImageScalingSize = new Size(20, 20);
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1030, 24);
+            menuStrip1.Size = new Size(299, 24);
             menuStrip1.TabIndex = 8;
             menuStrip1.Text = "menuStrip1";
-            // 
-            // button1
-            // 
-            button1.Location = new Point(56, 154);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 9;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // ReportImoveisFront
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1030, 677);
-            Controls.Add(button1);
+            ClientSize = new Size(299, 178);
             Controls.Add(ApresentarBtn);
             Controls.Add(Criar);
             Controls.Add(menuStrip1);
@@ -95,6 +83,5 @@
         private Button Criar;
         private Button ApresentarBtn;
         private MenuStrip menuStrip1;
-        private Button button1;
     }
 }

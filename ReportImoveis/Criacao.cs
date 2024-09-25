@@ -11,11 +11,11 @@ namespace ReportImoveis
         private List<CriacaoInfoLine> CriacaoInfoLinesList = new List<CriacaoInfoLine>();
         private int Deslocamento = 0;
         private Presentation Apresentacao;
-        private DataControl dataControl;
+        private IDataControl DataControl;
         private DinamicDesinger DinamicDesinger = new DinamicDesinger();
         private Size size = new Size(100, 27);
 
-        public Criacao()
+        public Criacao(IDataControl _dataControl)
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterParent;
@@ -29,7 +29,7 @@ namespace ReportImoveis
                 LinkImovelTxtBox = LinkImovelTxtBox,
                 NewPictureBox = ImovelPictureBox
             });
-            dataControl = new DataControl();
+            DataControl = _dataControl;
         }
 
         private void Criacao_Load(object sender, EventArgs e)
@@ -52,7 +52,7 @@ namespace ReportImoveis
 
             CalcularBtn_Click(null, null);
 
-            dataControl.SaveData(Apresentacao);
+            DataControl.SaveData(Apresentacao);
         }
 
         private void AddImovel_Click(object sender, EventArgs e)
@@ -209,11 +209,11 @@ namespace ReportImoveis
 
         private void CarregarBtn_Click(object sender, EventArgs e)
         {
-            var apresentacao = dataControl.Carregar();
-            apresentacao.CalculateAllAvaliation();
+            var apresentacao = DataControl.Carregar();
 
             if (apresentacao is not null)
             {
+                apresentacao.CalculateAllAvaliation();
                 PopulateForm(apresentacao);
             }
             else

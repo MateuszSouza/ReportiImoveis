@@ -3,7 +3,7 @@ using ReportImoveis.Core.Domain;
 
 namespace ReportImoveis.Repository
 {
-    public class DataControl
+    public class DataControl : IDataControl
     {
         public DataControl()
         {

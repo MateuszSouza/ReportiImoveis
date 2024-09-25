@@ -80,7 +80,7 @@
             // 
             // SalvarDados
             // 
-            SalvarDados.Location = new Point(957, 630);
+            SalvarDados.Location = new Point(1461, 612);
             SalvarDados.Name = "SalvarDados";
             SalvarDados.Size = new Size(123, 30);
             SalvarDados.TabIndex = 1;
@@ -91,7 +91,7 @@
             // 
             // AddImovel
             // 
-            AddImovel.Location = new Point(957, 550);
+            AddImovel.Location = new Point(1461, 532);
             AddImovel.Name = "AddImovel";
             AddImovel.Size = new Size(123, 30);
             AddImovel.TabIndex = 2;
@@ -150,7 +150,7 @@
             // 
             // BtnRemover
             // 
-            BtnRemover.Location = new Point(957, 510);
+            BtnRemover.Location = new Point(1461, 492);
             BtnRemover.Name = "BtnRemover";
             BtnRemover.Size = new Size(125, 30);
             BtnRemover.TabIndex = 34;
@@ -160,7 +160,7 @@
             // 
             // OtimistaTxtBox
             // 
-            OtimistaTxtBox.Location = new Point(957, 280);
+            OtimistaTxtBox.Location = new Point(1461, 262);
             OtimistaTxtBox.Name = "OtimistaTxtBox";
             OtimistaTxtBox.Size = new Size(111, 27);
             OtimistaTxtBox.TabIndex = 35;
@@ -168,7 +168,7 @@
             // 
             // MercadoTxtBox
             // 
-            MercadoTxtBox.Location = new Point(957, 355);
+            MercadoTxtBox.Location = new Point(1461, 337);
             MercadoTxtBox.Name = "MercadoTxtBox";
             MercadoTxtBox.Size = new Size(111, 27);
             MercadoTxtBox.TabIndex = 36;
@@ -176,7 +176,7 @@
             // 
             // OtimoTxtBox
             // 
-            OtimoTxtBox.Location = new Point(957, 427);
+            OtimoTxtBox.Location = new Point(1461, 409);
             OtimoTxtBox.Name = "OtimoTxtBox";
             OtimoTxtBox.Size = new Size(111, 27);
             OtimoTxtBox.TabIndex = 37;
@@ -185,7 +185,7 @@
             // OtimistaLable
             // 
             OtimistaLable.AutoSize = true;
-            OtimistaLable.Location = new Point(957, 257);
+            OtimistaLable.Location = new Point(1461, 239);
             OtimistaLable.Name = "OtimistaLable";
             OtimistaLable.Size = new Size(65, 20);
             OtimistaLable.TabIndex = 38;
@@ -194,7 +194,7 @@
             // OtimoLbl
             // 
             OtimoLbl.AutoSize = true;
-            OtimoLbl.Location = new Point(957, 404);
+            OtimoLbl.Location = new Point(1461, 386);
             OtimoLbl.Name = "OtimoLbl";
             OtimoLbl.Size = new Size(51, 20);
             OtimoLbl.TabIndex = 39;
@@ -203,7 +203,7 @@
             // MercadoLabel
             // 
             MercadoLabel.AutoSize = true;
-            MercadoLabel.Location = new Point(957, 332);
+            MercadoLabel.Location = new Point(1461, 314);
             MercadoLabel.Name = "MercadoLabel";
             MercadoLabel.Size = new Size(68, 20);
             MercadoLabel.TabIndex = 40;
@@ -213,7 +213,7 @@
             // 
             OtimistaNumUpDown.DecimalPlaces = 2;
             OtimistaNumUpDown.Increment = new decimal(new int[] { 25, 0, 0, 65536 });
-            OtimistaNumUpDown.Location = new Point(1084, 280);
+            OtimistaNumUpDown.Location = new Point(1588, 262);
             OtimistaNumUpDown.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
             OtimistaNumUpDown.Name = "OtimistaNumUpDown";
             OtimistaNumUpDown.Size = new Size(71, 27);
@@ -225,7 +225,7 @@
             // 
             MercadoNumUpDown.DecimalPlaces = 2;
             MercadoNumUpDown.Increment = new decimal(new int[] { 25, 0, 0, 65536 });
-            MercadoNumUpDown.Location = new Point(1084, 354);
+            MercadoNumUpDown.Location = new Point(1588, 336);
             MercadoNumUpDown.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
             MercadoNumUpDown.Name = "MercadoNumUpDown";
             MercadoNumUpDown.Size = new Size(71, 27);
@@ -236,7 +236,7 @@
             // 
             OtimoNumUpDown.DecimalPlaces = 2;
             OtimoNumUpDown.Increment = new decimal(new int[] { 25, 0, 0, 65536 });
-            OtimoNumUpDown.Location = new Point(1084, 426);
+            OtimoNumUpDown.Location = new Point(1588, 408);
             OtimoNumUpDown.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
             OtimoNumUpDown.Name = "OtimoNumUpDown";
             OtimoNumUpDown.Size = new Size(71, 27);
@@ -246,7 +246,7 @@
             // 
             // CalcularBtn
             // 
-            CalcularBtn.Location = new Point(957, 470);
+            CalcularBtn.Location = new Point(1461, 452);
             CalcularBtn.Margin = new Padding(2);
             CalcularBtn.Name = "CalcularBtn";
             CalcularBtn.Size = new Size(125, 30);
@@ -258,7 +258,7 @@
             // PercentLbl1
             // 
             PercentLbl1.AutoSize = true;
-            PercentLbl1.Location = new Point(1161, 428);
+            PercentLbl1.Location = new Point(1665, 410);
             PercentLbl1.Name = "PercentLbl1";
             PercentLbl1.Size = new Size(21, 20);
             PercentLbl1.TabIndex = 45;
@@ -267,7 +267,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(1161, 356);
+            label1.Location = new Point(1665, 338);
             label1.Name = "label1";
             label1.Size = new Size(21, 20);
             label1.TabIndex = 46;
@@ -276,7 +276,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(1157, 279);
+            label2.Location = new Point(1661, 261);
             label2.Name = "label2";
             label2.Size = new Size(21, 20);
             label2.TabIndex = 47;
@@ -284,7 +284,7 @@
             // 
             // CarregarBtn
             // 
-            CarregarBtn.Location = new Point(957, 590);
+            CarregarBtn.Location = new Point(1461, 572);
             CarregarBtn.Name = "CarregarBtn";
             CarregarBtn.Size = new Size(123, 30);
             CarregarBtn.TabIndex = 48;
@@ -295,7 +295,7 @@
             // CorretorPicBox
             // 
             CorretorPicBox.BackColor = SystemColors.ButtonHighlight;
-            CorretorPicBox.Location = new Point(971, 116);
+            CorretorPicBox.Location = new Point(1475, 98);
             CorretorPicBox.Name = "CorretorPicBox";
             CorretorPicBox.Size = new Size(130, 130);
             CorretorPicBox.TabIndex = 50;
@@ -305,7 +305,7 @@
             // FotoCorretor
             // 
             FotoCorretor.AutoSize = true;
-            FotoCorretor.Location = new Point(975, 88);
+            FotoCorretor.Location = new Point(1479, 70);
             FotoCorretor.Name = "FotoCorretor";
             FotoCorretor.Size = new Size(98, 20);
             FotoCorretor.TabIndex = 51;
@@ -429,7 +429,7 @@
             // checkBoxOtimista
             // 
             checkBoxOtimista.AutoSize = true;
-            checkBoxOtimista.Location = new Point(922, 290);
+            checkBoxOtimista.Location = new Point(1426, 272);
             checkBoxOtimista.Name = "checkBoxOtimista";
             checkBoxOtimista.Size = new Size(18, 17);
             checkBoxOtimista.TabIndex = 52;
@@ -440,7 +440,7 @@
             // checkBoxMercado
             // 
             checkBoxMercado.AutoSize = true;
-            checkBoxMercado.Location = new Point(922, 365);
+            checkBoxMercado.Location = new Point(1426, 347);
             checkBoxMercado.Name = "checkBoxMercado";
             checkBoxMercado.Size = new Size(18, 17);
             checkBoxMercado.TabIndex = 53;
@@ -449,7 +449,7 @@
             // checkBoxOtimo
             // 
             checkBoxOtimo.AutoSize = true;
-            checkBoxOtimo.Location = new Point(922, 437);
+            checkBoxOtimo.Location = new Point(1426, 419);
             checkBoxOtimo.Name = "checkBoxOtimo";
             checkBoxOtimo.Size = new Size(18, 17);
             checkBoxOtimo.TabIndex = 54;
@@ -458,7 +458,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(880, 257);
+            label3.Location = new Point(1384, 239);
             label3.Name = "label3";
             label3.Size = new Size(60, 20);
             label3.TabIndex = 55;
@@ -469,7 +469,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(1196, 712);
+            ClientSize = new Size(1782, 712);
             Controls.Add(label3);
             Controls.Add(checkBoxOtimo);
             Controls.Add(checkBoxMercado);
@@ -514,7 +514,7 @@
             Controls.Add(AddImovel);
             Controls.Add(SalvarDados);
             MaximizeBox = false;
-            MaximumSize = new Size(1214, 759);
+            MaximumSize = new Size(1800, 759);
             MinimizeBox = false;
             MinimumSize = new Size(1214, 759);
             Name = "Criacao";

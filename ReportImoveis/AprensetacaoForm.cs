@@ -1,20 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using ReportImoveis.Core.Domain;
 
 namespace ReportImoveis
 {
-    public partial class AprensetacaoForm : Form
+    public partial class ApresentacaoForm : Form
     {
-        public AprensetacaoForm()
+        private readonly Presentation presentation;
+
+        public ApresentacaoForm(Presentation _presentation)
         {
             InitializeComponent();
+            presentation = _presentation;
+            Populate(presentation);
+
+        }
+
+        private void Populate(Presentation presentation)
+        {
+            CorretorPiture.ImageLocation = presentation.Corretor.ImageLocation;
+            CorretorPiture.SizeMode = PictureBoxSizeMode.StretchImage;
+            CorretorPiture.BorderStyle = BorderStyle.Fixed3D;
+            NomeCorretor.Text = "Corretor: " + presentation.Corretor.Name;
+
         }
     }
 }
